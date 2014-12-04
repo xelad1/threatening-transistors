@@ -1,12 +1,12 @@
-# Project Name
+# Project Name SelfInspi.red
 
-> Pithy project description
+> "Keeping your personal inspiration present on journey to achievement"
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: rachelsison
+  - __Scrum Master__: raymondma1
+  - __Development Team Members__: renderf0x, nballaney
 
 ## Table of Contents
 
@@ -23,12 +23,14 @@
 > Some usage instructions
 
 ## Requirements
-
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+    "body-parser": "^1.10.0",
+    "chalk": "^0.5.1",
+    "cookie-parser": "^1.3.3",
+    "express": "^4.10.4",
+    "mandrill-api": "^1.0.41",
+    "morgan": "^1.5.0",
+    "passport": "^0.2.1",
+    "passport-facebook": "^1.0.3"
 
 ## Development
 
@@ -39,12 +41,13 @@ From within the root directory:
 ```sh
 sudo npm install -g bower
 npm install
+cd public
 bower install
 ```
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/threatening-transistors/threatening-transistors/issues)
 
 
 ## Contributing
