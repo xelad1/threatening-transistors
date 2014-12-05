@@ -107,7 +107,7 @@ var emailAddress;
 var frequency;
 var user;
 //then input into this function:
-var sendMessageSetInterval(goal, inspiration, emailAddress, frequency, user){
+var sendMessageSetInterval = function (goal, inspiration, emailAddress, frequency, user){
   var data = {
     from: 'Reminder Team <reminders.selfinspi.red>',
     to: emailAddress,
