@@ -64,7 +64,7 @@ app.delete('/tasks/:id', function(req, res) {
 });
 
 app.post('/tasks', function(req,res){
-	tasks.push(req.body.task)
+	tasks.push(req.body)
   console.log(tasks);
 	res.json(true);
 })

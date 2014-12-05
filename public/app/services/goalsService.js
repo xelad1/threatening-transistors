@@ -10,6 +10,6 @@ angular.module('app.goalFact', [])
 		});
 	}
 	return {
-
+		createGoal: createGoal
 	};
 });
