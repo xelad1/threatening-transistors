@@ -1,0 +1,31 @@
+.userWelcome {
+	font-family: 'PT Sans', sans-serif;
+	color: #00b5ad;
+	font-size: 30px;
+	font-weight: 700;
+}
+
+.userName {
+	font-family: 'PT Sans', sans-serif;
+	font-size: 30px;
+	font-weight: 400;
+	color: black;
+}
+
+body {
+	border: 2px solid;
+	border-radius: 25px;
+	margin-top: 15%;
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-bottom: 15%;
+	padding-right: 20px;
+	padding-left: 20px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.messageText {
+	font-family: 'News Cycle', sans-serif;
+	font-size: 20px;
+}
