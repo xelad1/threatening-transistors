@@ -16,5 +16,27 @@ app.use(express.static(__dirname + '/public'));
 
 //mongoose.connect(//mongo server);
 
+app.post('/signup', passport.authenticate('local-signup', {
+  successRedirect: '/',
+  failureRedirect: '/signin'
+  })
+);
+
+app.post('/login', passport.authenticate('local-signin', { 
+  successRedirect: '/',
+  failureRedirect: '/signin'
+  })
+);
+
+app.get('/logout', function(req, res){
+  var name = req.user.username;
+  console.log("LOGGIN OUT " + req.user.username)
+  req.logout();
+  res.redirect('/');
+  req.session.notice = "You have successfully been logged out " + name + "!";
+});
+
+app.post('/singup')
+
 app.listen(3000);
 console.log("App listening on port 3000");
