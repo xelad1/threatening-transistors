@@ -5,3 +5,9 @@ body {
 main {
 	margin-top: 15px;
 }
+
+/* kind of hacky way to improve the web UI. may affect mobile, and need to be changed */
+
+textarea {
+	resize: none !important;
+}
