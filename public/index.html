@@ -9,22 +9,11 @@
 		<link href="styles/custom-styles.css" rel="stylesheet">
 	</head>
 	<body>
-		<!-- nav -->
-		<nav class="ui fixed menu inverted navbar">
-		       <a sref="home" class="brand item">selfinspi.red</a>
-		       <a sref="addGoalState" class="active item">Add</a>
-		       <a sref="goalsListState" class="item">Goals</a>
-		       <a sref="completedListState" class="item">Completed</a>
+		<ng-include src="'app/views/partials/navbar.html'">
+		</ng-include>
 
-		       <a class="ui right dropdown item">User Menu
-		         <i class="dropdown icon"></i>
-		         <div class="menu">
-		           <div class="item">Settings</div>
-		           <div class="ui horizontal divider"></div>
-		           <div class="item">Signout</div>
-		         </div>
-		       </a>
-		   </nav> <!-- end nav -->
+		<div class="ui hidden divider"></div>
+		<div class="ui hidden divider"></div>
 
 		<main class="ui page grid">
 		        <div class="row">
