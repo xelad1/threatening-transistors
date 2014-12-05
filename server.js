@@ -100,9 +100,11 @@ var j = schedule.scheduleJob(date, function(){
 });
 });
 
+app.set('port', process.env.port || 3000);
+app.listen(app.get('port'), function(){
+  console.log("App listening on port" + port);
+});
 
-app.listen(3000);
-console.log("App listening on port 3000");
 
 //******************************************************************************************
 /*
