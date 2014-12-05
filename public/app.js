@@ -1,37 +1,19 @@
-angular.module('app', ['ui.router'])
-.config(function($stateProvider) {
+angular.module('app', ['ui.router', 'app.add', 'app.goals', 'app.goalFact'])
+.config(function($stateProvider, $urlRouterProvider) {
+
+  $urlRouterProvider.otherwise("/");
+
 	$stateProvider
   .state('addGoalState', {
-    url: "",
+    url: "/",
     views: {
       "addGoal": { 
         templateUrl: "/app/views/addGoal.template.html" ,
-        controller: function($scope) {
-          $scope.data = {
-            freq: {
-              daily: false,
-              weekly: false,
-              monthly: false
-            }
-          };
-          
-          $scope.freqToggle = function(value){
-            for (key in $scope.data.freq){
-              if (value === key){
-                $scope.data.freq[key] = true;
-              } else {
-                $scope.data.freq[key] = false;
-              }
-            }
-          };
-
-        }
+        controller: "addGoalController"
       },
       "goalsList": {
         templateUrl: "/app/views/goalsView.template.html",
-        controller: function($scope) {
-          
-        }
+        controller: "goalsListController"
       }
     }
   })

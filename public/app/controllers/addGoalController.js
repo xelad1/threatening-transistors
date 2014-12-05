@@ -1,5 +1,5 @@
 angular.module('app.add', [])
-.controller('addGoalController', function($scope){
+.controller('addGoalController', function('goalsService', $scope){
 	$scope.data = {
         freq: {
           daily: false,
@@ -7,6 +7,10 @@ angular.module('app.add', [])
           monthly: false
         }
       };
+
+  $scope.createGoal = function(goal){
+    goalsService.createGoal(goal);
+  }
           
   $scope.freqToggle = function(value){
     for (key in $scope.data.freq){
