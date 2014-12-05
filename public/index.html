@@ -3,14 +3,15 @@
 	<head>
 		<!-- css & dependencies here -->
 		<link href="bower_components/semantic-ui/dist/semantic.min.css" rel="stylesheet">
+		<link href="styles/custom-styles.css" rel="stylesheet">
 	</head>
 	<body>
 		<!-- nav -->
 		<nav class="ui fixed menu inverted navbar">
-		       <a href="" class="brand item">selfinspi.red</a>
-		       <a href="" class="active item">Home</a>
-		       <a href="" class="item">About</a>
-		       <a href="" class="item">Contact</a>
+		       <a sref="home" class="brand item">selfinspi.red</a>
+		       <a sref="addGoalState" class="active item">Add</a>
+		       <a sref="goalsListState" class="item">Goals</a>
+		       <a sref="completedListState" class="item">Completed</a>
 		       <a class="ui dropdown item">Dropdown
 		         <i class="dropdown icon"></i>
 		         <div class="menu">
@@ -26,8 +27,8 @@
 
 		<main class="ui page grid">
 		        <div class="row">
-		            <div class="column">
-						<div ui-view="addGoal">	</div>
+		            <div class="center aligned column">
+						<div ui-view="addGoal"></div>
 		            </div>
 		        </div>
 		</main>
