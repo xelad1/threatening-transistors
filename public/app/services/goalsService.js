@@ -1,4 +1,4 @@
-angular.module('app.goalFact')
+angular.module('app.goalFact', [])
 .factory('goalsService', function($q, $http){
 	var createGoal = function(goal){
 		return $http({
