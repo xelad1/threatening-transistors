@@ -37,4 +37,9 @@ angular.module('app.add', [])
       }
     }
   };
+
+  $scope.$on('$viewContentLoaded', function(){
+    $('.datepicker').pickadate();
+  });
+
 });
