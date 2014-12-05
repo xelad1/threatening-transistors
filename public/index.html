@@ -3,6 +3,9 @@
 	<head>
 		<!-- css & dependencies here -->
 		<link href="bower_components/semantic-ui/dist/semantic.min.css" rel="stylesheet">
+		<link href="bower_components/semantic-ui/dist/components/sidebar.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="bower_components/pickadate/lib/themes/default.css">
+		<link rel="stylesheet" href="bower_components/pickadate/lib/themes/default.date.css">
 		<link href="styles/custom-styles.css" rel="stylesheet">
 	</head>
 	<body>
@@ -29,16 +32,28 @@
 		        <div class="row">
 		            <div class="center aligned column">
 						<div ui-view="addGoal"></div>
+						<div class="ui hidden divider"></div>
+						<div ui-view="goalsList"></div>
 		            </div>
 		        </div>
 		</main>
-		<div ui-view="goalsList"></div>
 		<!-- angular and additional js files here... -->
 		<script src="bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="bower_components/angular/angular.min.js"></script>
 		<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+		<!-- semantic UI componenets -->
 		<script src="bower_components/semantic-ui/dist/semantic.js"></script>
+		<script src="bower_components/semantic-ui/dist/components/sidebar.min.js"></script>
+		<!--pickadate -->
+		<script src="bower_components/pickadate/lib/picker.js"></script>
+		<script src="bower_components/pickadate/lib/picker.date.js"></script>
+
 		<!-- our app -->
 		<script src="app.js"></script>
+
+		<!-- testing script for datepicker -->
+		<script>
+				$('.datepicker').pickadate();
+		</script>
 	</body>
 </html>
