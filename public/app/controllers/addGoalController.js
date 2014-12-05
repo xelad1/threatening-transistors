@@ -1,23 +1,30 @@
 angular.module('app.add', [])
-.controller('addGoalController', function('goalsService', $scope){
+.controller('addGoalController', function(goalsService, $scope){
 	$scope.data = {
-        freq: {
-          daily: false,
-          weekly: false,
-          monthly: false
+        goal: {
+          goal: "",
+          dueDate: new Date(),
+          why: "",
+          freq: {
+            daily: false,
+            weekly: false,
+            monthly: false
+          }
         }
       };
 
-  $scope.createGoal = function(goal){
-    goalsService.createGoal(goal);
+  $scope.createGoal = function(){
+    goalsService.createGoal($scope.data.goal).then(function(res){
+      console.log(res);
+    });
   }
           
   $scope.freqToggle = function(value){
-    for (key in $scope.data.freq){
+    for (key in $scope.data.goal.freq){
       if (value === key){
-        $scope.data.freq[key] = true;
+        $scope.data.goal.freq[key] = true;
       } else {
-        $scope.data.freq[key] = false;
+        $scope.data.goal.freq[key] = false;
       }
     }
   };
