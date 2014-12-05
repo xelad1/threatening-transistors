@@ -20,7 +20,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 app.use(express.static(__dirname + '/public'));
 
 var data = {
-  from: 'Excited User <aznladin@yahoo.com>',
+  from: 'Excited User <hazeeee@gmail.com>',
   to: 'hazeeee@gmail.com',
   subject: 'Hello',
   text: 'Testing some Mailgun awesomness! TEST2!!'
@@ -69,7 +69,7 @@ app.post('/tasks', function(req,res){
 	res.json(true);
 })
 
-var date = new Date(2014, 12, 04, 10, 16, 0); // will send an email at this time
+var date = new Date(2014, 11, 04, 22, 54, 0); // will send an email at this time
 
 var j = schedule.scheduleJob(date, function(){
   mailgun.messages().send(data, function (error, body) {

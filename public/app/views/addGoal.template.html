@@ -16,7 +16,7 @@
 	<div class="ui hidden divider"></div>
 	<div class="ui left buttons">
 		<div class="label">Remind me:</div>
-		<div ng-click="freqToggle('daily')" ng-class="{'active': data.goal.freq.daily}" class="ui active button">Once a day</div>
+		<div ng-click="freqToggle('daily')" ng-class="{'active': data.goal.freq.daily}" class="ui button">Once a day</div>
 		<div ng-click="freqToggle('weekly')" ng-class="{'active': data.goal.freq.weekly}" class="ui button">Once a week</div>
 		<div ng-click="freqToggle('monthly')" ng-class="{'active': data.goal.freq.monthly}" class="ui button">Once a month</div>
 	</div>
@@ -33,5 +33,15 @@
 	      <i class="right chevron icon"></i>
 	    </div>
 	</div>
+</div>
+<div class="ui dimmer">
+  <div class="content">
+    <div class="center">
+      <h2 class="ui inverted icon header">
+        <i class="child icon"></i>
+        Goal Saved!
+      </h2>
+    </div>
+  </div>
 </div>
 <!--end-->
