@@ -5,16 +5,16 @@ angular.module('app', ['ui.router'])
     url: "",
     views: {
       "addGoal": { 
-        templateUrl: "/app/views/addGoal.template.html" 
-      }
-    }
-  })
+        templateUrl: "/app/views/addGoal.template.html" ,
+        controller: function($scope) {
 
-  .state('goalsListState', {
-    url: "",
-    views: {
+        }
+      },
       "goalsList": {
-        templateUrl: "/app/views/addGoal.template.html" 
+        templateUrl: "/app/views/goalsView.template.html",
+        controller: function($scope) {
+          
+        }
       }
     }
   })
