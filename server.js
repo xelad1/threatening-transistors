@@ -6,8 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var chalk = require('chalk');
 var passport = require('passport');
-
-
+var schedule = require('node-schedule');
+//for email
+var api_key = 'key-e81b3d37fc5adcc1bc5c21f5267a90d5';
+var domain = 'selfinspi.red';
+var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+//// for email
 var app = express(); //  setup express server
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
@@ -15,7 +19,12 @@ app.use(bodyParser.json());                                     // parse applica
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(express.static(__dirname + '/public'));
 
-
+var data = {
+  from: 'Excited User <aznladin@yahoo.com>',
+  to: 'hazeeee@gmail.com',
+  subject: 'Hello',
+  text: 'Testing some Mailgun awesomness! TEST2!!'
+};
 //mongoose.connect(//mongo server);
 
 
@@ -56,6 +65,14 @@ app.post('/tasks', function(req,res){
 	tasks.push(req.body)
 	res.json(true);
 })
+
+var date = new Date(2014, 12, 04, 10, 16, 0); // will send an email at this time
+
+var j = schedule.scheduleJob(date, function(){
+  mailgun.messages().send(data, function (error, body) {
+  console.log(body);
+});
+});
 
 
 app.listen(3000);
