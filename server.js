@@ -64,7 +64,7 @@ app.delete('/tasks/:id', function(req, res) {
 });
 
 app.post('/tasks', function(req,res){
-	tasks.push(req.body)
+	tasks.push(req.body.task)
   console.log(tasks);
 	res.json(true);
 })
@@ -115,7 +115,7 @@ var sendMessageSetInterval = function (goal, inspiration, emailAddress, frequenc
     from: 'Reminder Team <reminders.selfinspi.red>',
     to: emailAddress,
     subject: "Hello" + user + ", just a reminder about WHY you're doing what you're doing!",
-    text: inspiration
+    text: inspiration // 
   }
   // var timerFunction(data) {
   //   mailgun.messages.send(data, function error, body){
