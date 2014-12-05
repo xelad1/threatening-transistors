@@ -65,8 +65,18 @@ app.delete('/tasks/:id', function(req, res) {
 
 app.post('/tasks', function(req,res){
 	tasks.push(req.body.task)
-  console.log(tasks);
-	res.json(true);
+  console.log('req.body: ', req.body);
+  var goalData = req.body;
+  var goal= goalData.goal;
+  var dueDate = goalData.dueDate;
+  var why = goalData.why;
+  var freq;
+  for(key in goalData.freq){
+    if(goalData.freq[key]){
+      freq = key;
+    }
+  }
+
 })
 
 var date = new Date(2014, 11, 04, 22, 54, 0); // will send an email at this time
