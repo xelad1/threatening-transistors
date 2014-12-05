@@ -27,6 +27,8 @@ var data = {
 };
 //mongoose.connect(//mongo server);
 
+//tasks array for testing
+var tasks = [];
 
 //.authenticate from passoport on a  post request on signup page
 app.post('/signup', passport.authenticate('local-signup', {
@@ -62,7 +64,8 @@ app.delete('/tasks/:id', function(req, res) {
 });
 
 app.post('/tasks', function(req,res){
-	tasks.push(req.body)
+	tasks.push(req.body.task)
+  console.log(tasks);
 	res.json(true);
 })
 
