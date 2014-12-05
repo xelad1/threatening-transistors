@@ -1,5 +1,5 @@
 angular.module('app.add', [])
-.controller('addGoalController', function('goalsService', $scope){
+.controller('addGoalController', function(goalsService, $scope){
 	$scope.data = {
         freq: {
           daily: false,
