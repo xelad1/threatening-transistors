@@ -7,6 +7,19 @@ var bodyParser = require('body-parser');
 var chalk = require('chalk');
 var passport = require('passport');
 var schedule = require('node-schedule');
+var mongoose = require('mongoose');
+var db = require('./db');
+
+// MONGOOSE
+mongo_uri = process.env.MONGO_URI || 'mongodb://localhost/selfInspired';
+mongoose.connect(mongo_uri);
+var connection = mongoose.connection;
+connection.on('error', console.error.bind(console, 'connection error:'));
+connection.once('open', function callback () {
+  console.log("Successful connection to database");
+});
+
+
 //for email
 var api_key = 'key-e81b3d37fc5adcc1bc5c21f5267a90d5';
 var domain = 'selfinspi.red';
