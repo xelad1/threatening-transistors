@@ -33,6 +33,10 @@
     "morgan": "^1.5.0",
     "passport": "^0.2.1",
     "passport-facebook": "^1.0.3",
+<<<<<<< HEAD
     "node-schedule": "^0.1.13"
+=======
+    "path": "^0.4.9"
+>>>>>>> 150eda1ca6751a9df139ef17af0eccacc7179bd3
   }
 }
