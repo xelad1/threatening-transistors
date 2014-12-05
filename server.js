@@ -98,3 +98,34 @@ mailgun.messages().send(data, function (error, body) {
   console.log(body);
 });
 */
+
+
+//input from form is saved to these variables
+var goal;
+var inspiration;
+var emailAddress;
+var frequency;
+var user;
+//then input into this function:
+var sendMessageSetInterval(goal, inspiration, emailAddress, frequency, user){
+  var data = {
+    from: 'Reminder Team <reminders.selfinspi.red>',
+    to: emailAddress,
+    subject: "Hello" + user + ", just a reminder about WHY you're doing what you're doing!",
+    text: inspiration
+  }
+  // var timerFunction(data) {
+  //   mailgun.messages.send(data, function error, body){
+  //   console.log(body);
+  // }
+
+}
+
+
+
+
+
+
+
+
+
