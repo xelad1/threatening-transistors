@@ -16,8 +16,17 @@ angular.module('app.add', [])
   $scope.createGoal = function(){
     goalsService.createGoal($scope.data.goal).then(function(res){
       console.log(res);
+      $scope.showCreateSuccess();
     });
   }
+
+  $scope.showCreateSuccess = function(){
+    console.log($('.dimmer'));
+    $('.dimmer').dimmer('show');
+    setTimeout(function(){
+      $('.dimmer').dimmer('hide');
+    }, 2000);
+  };
           
   $scope.freqToggle = function(value){
     for (key in $scope.data.goal.freq){
