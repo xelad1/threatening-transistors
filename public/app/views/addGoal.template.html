@@ -2,29 +2,32 @@
 <div class="ui form segment">
 	<div class="ui top left attached label">Add a new inspired goal!</div>
 	<div class="ui hidden divider"></div>
-	<div class="ui action left icon input">
+	<div class="ui action left icon labeled input">
+	  <a class="ui label">my goal</a>
 	  <i class="leaf icon"></i>
-	  <input ng-model="data.goal.goal" type="text" placeholder="My goal is to...">
+	  <input ng-model="data.goal.goal" type="text" placeholder="I want to...">
 	</div>
 	<div class="ui hidden divider"></div>
 	<div class="field">
-		<div class="ui action left icon input">
+		<div class="ui action left icon labeled input">
+		  <a class="ui label">deadline</a>
 		  <i class="calendar icon"></i>
 		  <input ng-model="data.goal.dueDate" type="text" class="datepicker" placeholder="I want to accomplish this by...">
 		</div>
 	</div>
 	<div class="ui hidden divider"></div>
-	<div class="ui left buttons">
-		<div class="label">Remind me:</div>
+	<div class="ui center label">Remind me:</div>
+	<div class="ui left teal buttons">
 		<div ng-click="freqToggle('daily')" ng-class="{'active': data.goal.freq.daily}" class="ui button">Once a day</div>
 		<div ng-click="freqToggle('weekly')" ng-class="{'active': data.goal.freq.weekly}" class="ui button">Once a week</div>
 		<div ng-click="freqToggle('monthly')" ng-class="{'active': data.goal.freq.monthly}" class="ui button">Once a month</div>
 	</div>
-	<div class="field">
+	<div class="ui hidden divider"></div>
+	<div class="ui field segment">
+		<div class="ui top attached large label">my inspiration</div>
 		<div class="ui action left icon input">
 			<i class="music icon"></i>
-			<label>Text Area</label>
-			<textarea ng-model="data.goal.why" placeholder="Now tell us why"></textarea>
+			<textarea class="inspiration" ng-model="data.goal.why" placeholder="Now tell us why"></textarea>
 		</div>
 	</div>
 	<div class="extra">

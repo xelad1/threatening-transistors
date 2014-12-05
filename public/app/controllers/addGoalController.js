@@ -3,7 +3,7 @@ angular.module('app.add', [])
 	$scope.data = {
         goal: {
           goal: "",
-          dueDate: new Date(),
+          dueDate: "",
           why: "",
           freq: {
             daily: false,
