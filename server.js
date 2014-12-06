@@ -1,11 +1,14 @@
 //server stuff goes here!
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var chalk = require('chalk');
 var passport = require('passport');
+var flash = require('connect-flash');
+var methodOverride = require('method-override');
 var schedule = require('node-schedule');
 var mongoose = require('mongoose');
 var db = require('./db');
@@ -27,16 +30,24 @@ var api_key = 'key-e81b3d37fc5adcc1bc5c21f5267a90d5';
 var domain = 'selfinspi.red';
 var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 //// for email
-var app = express(); //  setup express server
+var app = express();                                            //  setup express server
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
+app.use(session({ secret: 'DeRaNiRa' }));                       // session secret
+app.use(passport.initialize());
+app.use(passport.session());                                    // persistent login sessions
+app.use(flash());                                               // use connect-flash for flash messages stored in session
+app.use(methodOverride());
+app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 
 var cool = './public/emailTemplate.html';
 var htmlContent = fs.readFileSync(cool,'utf8');
 
+// require('./config/passport')(passport);                      // pass passport for configuration
+//require('./app/routes.js')(app, passport);
 
 var data = {
   from: 'Excited User <hazeeee@gmail.com>',
@@ -44,7 +55,6 @@ var data = {
   subject: 'Hello',
   html: htmlContent
 };
-//mongoose.connect(//mongo server);
 
 //tasks array for testing
 var tasks = [];
