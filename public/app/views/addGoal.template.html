@@ -12,7 +12,7 @@
 		<div class="ui action left icon labeled input">
 		  <a class="ui label">deadline</a>
 		  <i class="calendar icon"></i>
-		  <input ng-model="data.goal.dueDate" type="text" class="datepicker" placeholder="I want to accomplish this by...">
+		  <input ng-model="data.goal.endDate" type="text" class="datepicker" placeholder="I want to accomplish this by...">
 		</div>
 	</div>
 	<div class="ui hidden divider"></div>
@@ -23,19 +23,7 @@
 		<div ng-click="freqToggle('monthly')" ng-class="{'active': data.goal.freq.monthly}" class="ui button">Once a month</div>
 	</div>
 	<div class="ui hidden divider"></div>
-	<div class="ui field segment">
-		<div class="ui top attached large label">my inspiration</div>
-		<div class="ui action left icon input">
-			<i class="music icon"></i>
-			<textarea class="inspiration" ng-model="data.goal.why" placeholder="Now tell us why"></textarea>
-		</div>
-	</div>
-	<div class="extra">
-	    <div ng-click="createGoal()" class="ui teal button">
-	      Let's Rock!
-	      <i class="right chevron icon"></i>
-	    </div>
-	</div>
+	<div ui-view="reasons"></div>
 </div>
 <div class="ui dimmer">
   <div class="content">

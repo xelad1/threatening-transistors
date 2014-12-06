@@ -3,7 +3,7 @@ angular.module('app.add', [])
 	$scope.data = {
         goal: {
           goal: "",
-          dueDate: "",
+          endDate: "",
           why: "",
           freq: {
             daily: false,
@@ -14,10 +14,31 @@ angular.module('app.add', [])
       };
 
   $scope.createGoal = function(){
+    var input = $scope.prepareData($scope.data.goal);
+    console.log(input);
     goalsService.createGoal($scope.data.goal).then(function(res){
       console.log(res);
       $scope.showCreateSuccess();
     });
+  }
+
+  //prepares data to be sent to the server. the server is
+  //expecting different values the input provides
+
+  $scope.prepareData = function (data) {
+    var prepared = {};
+
+    prepared.content = data.goal;
+    prepared.startDate = new Date();
+    prepared.endDate = $scope.picker.get('select').obj; //make utc
+    prepared.why = data.why; //need to adjust to array
+
+    for (key in data.freq){
+      if (data.freq[key]){
+        prepared.freq = key;
+      }
+    }
+    return prepared;
   }
 
   $scope.showCreateSuccess = function(){
@@ -39,7 +60,8 @@ angular.module('app.add', [])
   };
 
   $scope.$on('$viewContentLoaded', function(){
-    $('.datepicker').pickadate();
+    var $input = $('.datepicker').pickadate();
+    $scope.picker = $input.pickadate('picker')
   });
 
 });
