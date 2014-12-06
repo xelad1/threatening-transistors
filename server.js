@@ -49,6 +49,7 @@ var htmlContent = fs.readFileSync(cool,'utf8');
 // require('./config/passport')(passport);                      // pass passport for configuration
 //require('./app/routes.js')(app, passport);
 
+
 var data = {
   from: 'Excited User <hazeeee@gmail.com>',
   to: 'hazeeee@gmail.com',
