@@ -11,7 +11,7 @@ var mongoose = require('mongoose');
 var db = require('./db');
 
 // MONGOOSE
-mongo_uri = process.env.MONGO_URI || 'mongodb://localhost/selfInspired';
+mongo_uri = process.env.MONGO_URI || 'mongodb://threatening:transistors@ds061360.mongolab.com:61360/heroku_app32253810';
 mongoose.connect(mongo_uri);
 var connection = mongoose.connection;
 connection.on('error', console.error.bind(console, 'connection error:'));
@@ -100,9 +100,9 @@ var j = schedule.scheduleJob(date, function(){
 });
 });
 
-app.set('port', process.env.port || 3000);
+app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), function(){
-  console.log("App listening on port" + port);
+  console.log("Applet listening on port " + process.env.PORT);
 });
 
 
