@@ -47,7 +47,7 @@ var data = {
 //mongoose.connect(//mongo server);
 
 //tasks array for testing
-var tasks = [];
+var goals = [];
 
 //.authenticate from passoport on a  post request on signup page
 app.post('/signup', passport.authenticate('local-signup', {
@@ -72,18 +72,18 @@ app.get('/logout', function(req, res){
   req.session.notice = "You have successfully been logged out " + name + "!";
 });
 
-app.delete('/tasks/:id', function(req, res) {
-  if(tasks.length <= req.params.id) { // modify this part depending on data model id =index
+app.delete('/goals/:id', function(req, res) {
+  if(goals.length <= req.params.id) { // modify this part depending on data model id =index
     res.statusCode = 404;
     return res.send('Error 404: No quote found');
   }  
 
-	tasks.splice(req.params.id, 1); // deletes the slected goal
+	goals.splice(req.params.id, 1); // deletes the slected goal
   res.json(true);
 });
 
-app.post('/tasks', function(req,res){
-	tasks.push(req.body.task)
+app.post('/goals', function(req,res){
+	goals.push(req.body.goal)
   console.log('req.body: ', req.body);
   var goalData = req.body;
   var goal= goalData.goal;
