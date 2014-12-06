@@ -11,7 +11,7 @@ var mongoose = require('mongoose');
 var db = require('./db');
 
 // MONGOOSE
-mongo_uri = process.env.MONGO_URI || ' mongodb://threatening:transistors@ds061360.mongolab.com:61360/heroku_app32253810';
+mongo_uri = process.env.MONGO_URI || 'mongodb://threatening:transistors@ds061360.mongolab.com:61360/heroku_app32253810';
 mongoose.connect(mongo_uri);
 var connection = mongoose.connection;
 connection.on('error', console.error.bind(console, 'connection error:'));
