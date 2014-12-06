@@ -9,6 +9,7 @@ var passport = require('passport');
 var schedule = require('node-schedule');
 var mongoose = require('mongoose');
 var db = require('./db');
+var fs = require('fs');
 
 // MONGOOSE
 mongo_uri = process.env.MONGO_URI || 'mongodb://threatening:transistors@ds061360.mongolab.com:61360/heroku_app32253810';
@@ -18,6 +19,7 @@ connection.on('error', console.error.bind(console, 'connection error:'));
 connection.once('open', function callback () {
   console.log("Successful connection to database");
 });
+
 
 
 //for email
@@ -32,11 +34,15 @@ app.use(bodyParser.json());                                     // parse applica
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(express.static(__dirname + '/public'));
 
+var cool = './public/emailTemplate.html';
+var htmlContent = fs.readFileSync(cool,'utf8');
+
+
 var data = {
   from: 'Excited User <hazeeee@gmail.com>',
   to: 'hazeeee@gmail.com',
   subject: 'Hello',
-  text: 'Testing some Mailgun awesomness! TEST2!!'
+  html: htmlContent
 };
 //mongoose.connect(//mongo server);
 
