@@ -12,8 +12,7 @@ angular.module('app', ['ui.router', 'app.add', 'app.goals', 'app.goalFact'])
         controller: "addGoalController"
       },
       "reasons@addGoalState": {
-        templateUrl: "/app/views/reasonsView.template.html",
-        controller: "addGoalController"
+        templateUrl: "/app/views/reasonsView.template.html"
       },
       "goalsList": {
         templateUrl: "/app/views/goalsView.template.html",

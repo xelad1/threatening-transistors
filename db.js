@@ -12,7 +12,7 @@ var goalsSchema = new Schema({
   userId: {type: Schema.Types.ObjectId, ref: 'User'},
   email: String,
   goal: [{ 
-    body: String,
+    content: String,
     startDate: Date,
     endDate: Date,
     freq: String,
