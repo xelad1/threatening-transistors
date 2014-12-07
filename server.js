@@ -44,17 +44,21 @@ app.use(methodOverride());
 app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 
+var testData = {
+  name: "Rachel",
+  goal: "exercise twice a day",
+  daysAaway: "5 days",
+  reason: "to stay healthy"
+}
 var htmlPath = './public/emailTemplate.html'; 
 var htmlContent = fs.readFileSync(htmlPath,'utf8');
-var res = nunjucks.renderString(htmlContent, {goal:"exercise twice a day"});
-var html = res;
-console.log(html);
+var res = nunjucks.renderString(htmlContent, testData);
 
 //require('./config/passport')(passport);                      // pass passport for configuration
 //require('./app/routes.js')(app, passport);
 
 
-var data = {
+var emailData = {
   from: 'Excited User <hazeeee@gmail.com>',
   to: 'hazeeee@gmail.com',
   subject: 'Hello',
@@ -116,7 +120,7 @@ app.post('/goals', function(req,res){
 var date = new Date(2014, 11, 04, 22, 54, 0); // will send an email at this time
 
 var j = schedule.scheduleJob(date, function(){
-  mailgun.messages().send(data, function (error, body) {
+  mailgun.messages().send(emailData, function (error, body) {
   console.log(body);
 });
 });
