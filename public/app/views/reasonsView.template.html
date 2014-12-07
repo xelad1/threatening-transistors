@@ -2,7 +2,7 @@
 	<div class="ui top attached large label">my inspiration</div>
 	<div class="ui action left icon input">
 		<i class="music icon"></i>
-		<textarea class="inspiration" ng-model="data.goal.why" placeholder="Now tell us why"></textarea>
+		<textarea class="inspiration" ng-model="data.goal.why" placeholder="Now tell us why" ng-blur="require($event)"></textarea>
 	</div>
 </div>
 <div class="extra">
