@@ -4,6 +4,7 @@ var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = new Schema({
   name: String,
+  email: String,
   password: String
 });
 
@@ -21,7 +22,6 @@ var User = mongoose.model('User', userSchema);
 
 var goalsSchema = new Schema({
   userId: {type: Schema.Types.ObjectId, ref: 'User'},
-  email: String,
   goal: [{ 
     content: String,
     startDate: Date,

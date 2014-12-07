@@ -46,7 +46,8 @@ app.use(express.static(__dirname + '/public'));
 var cool = './public/emailTemplate.html';
 var htmlContent = fs.readFileSync(cool,'utf8');
 
-//require('./config/passport')(passport);                      // pass passport for configuration
+
+require('./passport')(passport);                                // pass passport for configuration
 //require('./app/routes.js')(app, passport);
 
 
@@ -60,12 +61,11 @@ var data = {
 //tasks array for testing
 var goals = [];
 
-//.authenticate from passoport on a  post request on signup page
 app.post('/signup', passport.authenticate('local-signup', {
-  successRedirect: '/',
-  failureRedirect: '/signin'
-  })
-);
+    successRedirect : '/', // redirect to the secure profile section
+    failureRedirect : '/signup', // redirect back to the signup page if there is an error
+    failureFlash : true // allow flash messages
+}));
 
 //.authenticate with local-sign from passport on a post request on logon page.
 app.post('/login', passport.authenticate('local-signin', { 
