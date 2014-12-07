@@ -13,6 +13,7 @@ var schedule = require('node-schedule');
 var mongoose = require('mongoose');
 var db = require('./db');
 var fs = require('fs');
+var nunjucks = require('nunjucks');
 
 // MONGOOSE
 mongo_uri = process.env.MONGO_URI || 'mongodb://threatening:transistors@ds061360.mongolab.com:61360/heroku_app32253810';
@@ -43,18 +44,25 @@ app.use(methodOverride());
 app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 
-var cool = './public/emailTemplate.html';
-var htmlContent = fs.readFileSync(cool,'utf8');
+var testData = {
+  name: "Rachel",
+  goal: "exercise twice a day",
+  daysAaway: "5 days",
+  reason: "to stay healthy"
+}
+var htmlPath = './public/emailTemplate.html'; 
+var htmlContent = fs.readFileSync(htmlPath,'utf8');
+var res = nunjucks.renderString(htmlContent, testData);
 
 //require('./config/passport')(passport);                      // pass passport for configuration
 //require('./app/routes.js')(app, passport);
 
 
-var data = {
+var emailData = {
   from: 'Excited User <hazeeee@gmail.com>',
   to: 'hazeeee@gmail.com',
   subject: 'Hello',
-  html: htmlContent
+  html: res
 };
 
 //tasks array for testing
@@ -112,7 +120,7 @@ app.post('/goals', function(req,res){
 var date = new Date(2014, 11, 04, 22, 54, 0); // will send an email at this time
 
 var j = schedule.scheduleJob(date, function(){
-  mailgun.messages().send(data, function (error, body) {
+  mailgun.messages().send(emailData, function (error, body) {
   console.log(body);
 });
 });
@@ -152,19 +160,19 @@ var emailAddress;
 var frequency;
 var user;
 //then input into this function:
-var sendMessageSetInterval = function (goal, inspiration, emailAddress, frequency, user){
-  var data = {
-    from: 'Reminder Team <reminders.selfinspi.red>',
-    to: emailAddress,
-    subject: "Hello" + user + ", just a reminder about WHY you're doing what you're doing!",
-    text: inspiration // 
-  }
+// var sendMessageSetInterval = function (goal, inspiration, emailAddress, frequency, user){
+//   var data = {
+//     from: 'Reminder Team <reminders.selfinspi.red>',
+//     to: emailAddress,
+//     subject: "Hello" + user + ", just a reminder about WHY you're doing what you're doing!",
+//     text: inspiration // 
+//   }
   // var timerFunction(data) {
   //   mailgun.messages.send(data, function error, body){
   //   console.log(body);
   // }
 
-}
+
 
 
 
