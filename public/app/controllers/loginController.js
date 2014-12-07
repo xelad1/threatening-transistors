@@ -1,9 +1,9 @@
 angular.module('app.login', [])
 .controller('loginController', function($scope, authFactory){
-	$scope.username = "";
+	$scope.email = "";
 	$scope.password = ""
 
 	$scope.login = function(){
-		authFactory.login($scope.username, $scope.password);
+		authFactory.login($scope.email, $scope.password);
 	}
 });

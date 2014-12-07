@@ -1,4 +1,4 @@
-angular.module('app', ['ui.router', 'app.login', 'app.add', 'app.goals', 'app.authFact', 'app.goalFact'])
+angular.module('app', ['ui.router', 'app.signup', 'app.login', 'app.add', 'app.goals', 'app.authFact', 'app.goalFact'])
 .config(function($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise("/");
@@ -26,6 +26,15 @@ angular.module('app', ['ui.router', 'app.login', 'app.add', 'app.goals', 'app.au
       'authPane': {
         templateUrl: '/app/views/loginView.template.html',
         controller: 'loginController'
+      }
+    }
+  })
+  .state('signupState', {
+    url:'/signup',
+    views: {
+      'authPane': {
+        templateUrl: '/app/views/signupView.template.html',
+        controller: 'signupController'
       }
     }
   })
