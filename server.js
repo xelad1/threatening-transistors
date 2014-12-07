@@ -46,7 +46,7 @@ app.use(express.static(__dirname + '/public'));
 var cool = './public/emailTemplate.html';
 var htmlContent = fs.readFileSync(cool,'utf8');
 
-// require('./config/passport')(passport);                      // pass passport for configuration
+//require('./config/passport')(passport);                      // pass passport for configuration
 //require('./app/routes.js')(app, passport);
 
 
