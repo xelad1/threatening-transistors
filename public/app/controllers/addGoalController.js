@@ -1,6 +1,9 @@
 angular.module('app.add', [])
 .controller('addGoalController', function(goalsService, $scope){
-	$scope.data = {
+	
+  //setup our data for the Add Goal view
+
+  $scope.data = {
         goal: {
           goal: "",
           endDate: "",
@@ -12,6 +15,18 @@ angular.module('app.add', [])
           }
         }
       };
+
+  //this tracks whether a required field has been touched but not filled in
+  $scope.conflict = false;
+
+  $scope.require = function(event){
+    console.log($(event.target));
+    if (event.target.value == ""){
+      $(event.target).parent().addClass("error");
+    } else {
+      $(event.target).parent().removeClass("error");      
+    }
+  };
 
   $scope.createGoal = function(){
     var input = $scope.prepareData($scope.data.goal);
