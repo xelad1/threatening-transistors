@@ -18,6 +18,7 @@
 		<main class="ui page grid">
 		        <div class="row">
 		            <div class="center aligned column">
+		            	<div ui-view="authPane"></div>
 						<div ui-view="addGoal"></div>
 						<div class="ui hidden divider"></div>
 						<div ui-view="goalsList"></div>
@@ -38,7 +39,9 @@
 		<!-- our app -->
 		<script src="app.js"></script>
 		<script src="app/services/goalsService.js"></script>
+		<script src="app/services/authService.js"></script>
 		<script src="app/controllers/addGoalController.js"></script>
 		<script src="app/controllers/goalsListController.js"></script>
+		<script src="app/controllers/loginController.js"></script>
 	</body>
 </html>
