@@ -44,8 +44,6 @@ app.use(methodOverride());
 app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 
-var test = {goal: "Exercise twice a day"};
-
 var htmlPath = './public/emailTemplate.html'; 
 var htmlContent = fs.readFileSync(htmlPath,'utf8');
 var res = nunjucks.renderString(htmlContent, {goal:"exercise twice a day"});
