@@ -14,6 +14,7 @@ var mongoose = require('mongoose');
 var db = require('./db');
 var fs = require('fs');
 var nunjucks = require('nunjucks');
+var services = require('./middleware');
 
 // MONGOOSE
 mongo_uri = process.env.MONGO_URI || 'mongodb://threatening:transistors@ds061360.mongolab.com:61360/heroku_app32253810';
@@ -169,9 +170,9 @@ var date = new Date(2014, 11, 04, 22, 54, 0); // will send an email at this time
 
 
 var j = schedule.scheduleJob(date, function(){
-  mailgun.messages().send(emailData, function (error, body) {
-  console.log(body);
-});
+//   mailgun.messages().send(emailData, function (error, body) {
+//   console.log(body);
+// });
 });
 // end of email to user on post request
 
