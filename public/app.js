@@ -1,3 +1,7 @@
+/*******************************************
+*  Setup for app main and ui-router routes *
+*******************************************/
+
 angular.module('app', ['ui.router', 'app.signup', 'app.login', 'app.add', 'app.goals', 'app.authFact', 'app.goalFact'])
 .config(function($stateProvider, $urlRouterProvider) {
 

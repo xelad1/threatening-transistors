@@ -1,3 +1,7 @@
+/*******************************************
+*  Controller for the signup template    *
+*******************************************/
+
 angular.module('app.signup', [])
 .controller('signupController', function($scope, authFactory){
 	$scope.email = "";
