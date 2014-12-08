@@ -142,11 +142,13 @@ app.post('/goals', function(req,res){
   });
 
 // will send an email to user on post request /goals  
+var whyIdx = Math.floor(Math.random()*why.length);
+console.log(whyIdx);
   var testData = {
   name: "Rachel",
   goal: goalData.goal,
   daysAway: '3 days away',
-  reason: why
+  reason: why[whyIdx]
 }
 var htmlPath = './public/emailTemplate.html'; 
 var htmlContent = fs.readFileSync(htmlPath,'utf8');
@@ -161,9 +163,9 @@ var date = new Date(2014, 11, 04, 22, 54, 0); // will send an email at this time
 
 
 var j = schedule.scheduleJob(date, function(){
-//   mailgun.messages().send(emailData, function (error, body) {
-//   console.log(body);
-// });
+  mailgun.messages().send(emailData, function (error, body) {
+  console.log(body);
+});
 });
 // end of email to user on post request
 
