@@ -11,7 +11,7 @@ angular.module('app.authFact', [])
 			url: '/login',
 			data: {email: email, password: password}
 		}).then(function(res){
-			redirect('/');
+			console.log(res);
 		});
 	}
 
