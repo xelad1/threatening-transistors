@@ -154,7 +154,7 @@ var whyIdx = Math.floor(Math.random()*why.length);
 console.log(whyIdx);
   var testData = {
   name: "Rachel",
-  goal: goalData.goal,
+  goal: goalData.content,
   daysAway: '3 days away',
   reason: why[whyIdx]
 }
