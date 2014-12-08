@@ -52,7 +52,7 @@ angular.module('app.add', [])
   $scope.prepareData = function (data) {
     var prepared = {};
 
-    prepared.content = data.goal;
+    prepared.goalContent= data.goal;
     prepared.startDate = new Date();
     prepared.endDate = $scope.picker.get('select').obj; //make utc
     prepared.why = data.why; //need to adjust to array
