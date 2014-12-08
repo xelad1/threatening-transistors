@@ -62,15 +62,20 @@ var goals = [];
 //tasks array for testing
 
 app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect : '/', // redirect to the secure profile section
+    successRedirect : '/login', // redirect to the secure profile section
     failureRedirect : '/signup', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
 }));
 
+// app.get('/login', function(req,res) {
+
+// })
+
 //.authenticate with local-sign from passport on a post request on logon page.
-app.post('/login', passport.authenticate('local-signin', { 
+app.post('/login', passport.authenticate('local-login', { 
   successRedirect: '/',
-  failureRedirect: '/signin'
+  failureRedirect: '/login',
+  failureFlash : true // allow flash messages
   })
 );
 
