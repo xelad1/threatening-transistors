@@ -123,9 +123,6 @@ app.post('/goals', function(req,res){
       freq = key;
     }
   }
-  if(freq === daily){
-
-  }
 // will send an email to user on post request /goals  
   var testData = {
   name: "Rachel",
