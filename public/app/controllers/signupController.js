@@ -8,6 +8,8 @@ angular.module('app.signup', [])
 	$scope.name = ""
 	$scope.password = ""
 
+	//Calls factory signup function
+
 	$scope.signup = function(){
 		authFactory.signup($scope.email, $scope.name, $scope.password);
 	}

@@ -1,3 +1,5 @@
+[![Stories in Ready](https://badge.waffle.io/threatening-transistors/threatening-transistors.svg?label=ready&title=Ready)](http://waffle.io/threatening-transistors/threatening-transistors)
+
 # Project Name SelfInspi.red
 
 > "Keeping your personal inspiration present on journey to achievement"
