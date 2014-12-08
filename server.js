@@ -31,14 +31,23 @@ connection.once('open', function callback () {
 // var testUser = new db.User({name:"hello", email:"cool@gmail.com", password:"test123"});
 // testUser.save(function (err) {if (err) console.log ('Error on save!')});
 
-// db.User.find({name:"hello"}).exec(function(err, result) {
-//   if (!err) {
-//     console.log(result)
-//   } else {
-//     console.log("error");
-//   };
-// });
+db.User.find({name:"hello"}).exec(function(err, result) {
+  if (!err) {
+    console.log(result);
+  } else {
+    console.log("error");
+  };
+});
 
+// Code below will grab goals by user id once it is available on database.
+
+// db.Goals.find({userId:''}).exec(function(err, result) {
+//   if (!err) {
+//     console.log(result);
+//   } else{
+//     console.log("error");
+//   }
+// })
 
 
 //for email
@@ -130,7 +139,7 @@ var emailData = {
   subject: 'your goal!',
   html: res
 };
-var date = new Date(2014, 11, 04, 22, 54, 0); // will send an email at this time
+var date = new Date(2014, 11, 04, 22, 54, 0); // will send an email at this time this data used for testing purposes
 
 var j = schedule.scheduleJob(date, function(){
   mailgun.messages().send(emailData, function (error, body) {
