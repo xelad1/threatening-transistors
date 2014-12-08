@@ -11,7 +11,7 @@ angular.module('app.add', [])
 
   $scope.data = {
         goal: {
-          goal: "",
+          content: "",
           endDate: "",
           why: [],
           freq: {
@@ -89,7 +89,7 @@ angular.module('app.add', [])
   $scope.clearForm = function(){
     $scope.data = {
             goal: {
-              goal: "",
+              content: "",
               endDate: "",
               why: [],
               freq: {
@@ -131,7 +131,7 @@ angular.module('app.add', [])
   $scope.prepareData = function (data) {
     var prepared = {};
 
-    prepared.content= data.goal;
+    prepared.content= data.content;
     prepared.startDate = new Date();
     prepared.endDate = $scope.picker.get('select').obj; //make utc
     prepared.why = data.why; //need to adjust to array
