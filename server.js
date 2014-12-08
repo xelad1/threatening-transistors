@@ -24,6 +24,20 @@ connection.once('open', function callback () {
   console.log("Successful connection to database");
 });
 
+// inputting user / data as a test on database
+
+
+//this will add a new user to the database, we can add a test case for authentication later
+var testUser = new db.User({name:"hello", email:"cool@gmail.com", password:"test123"});
+testUser.save(function (err) {if (err) console.log ('Error on save!')});
+
+db.User.find({name:"hello"}).exec(function(err, result) {
+  if (!err) {
+    console.log("found!")
+  } else {
+    console.log("error");
+  };
+});
 
 
 //for email
@@ -171,7 +185,6 @@ var user;
   //   mailgun.messages.send(data, function error, body){
   //   console.log(body);
   // }
-
 
 
 
