@@ -60,16 +60,13 @@ angular.module('app.add', [])
   }
 
   $scope.showNextPrompt = function(){
-    var phrases = ["","Tell us more - can you be specific? (or skip below)","Let's get really deep - why do you want that to be the case?"];
+    var phrases = ["","Tell us more - can you be specific? Try to think of what's behind your first reason - what makes that important to you? (or you can skip below)","Let's get really deep - why do you want that to be the case? What would this do in your life? Would it bring you happiness, prosperity, or growth? (or you can skip below)"];
     var buttonText = ["","Let's go deeper", "OK, let's setup reminders!"];
 
     var currentVal = $scope.data.goal.why.length;
 
     $('#sendButton').text(buttonText[currentVal]);
     $('.inspiration').attr('placeholder', phrases[currentVal]);
-
-    console.log($scope.data.goal.why);
-
   }
 
   //Scope function to attach to the goalsService creation function
@@ -81,9 +78,9 @@ angular.module('app.add', [])
     }
 
     var input = $scope.prepareData($scope.data.goal);
-    console.log(input);
+
     goalsService.createGoal(input).then(function(res){
-      console.log(res);
+      console.log("Server says" + res);
       $scope.showCreateSuccess();
     });
   }
