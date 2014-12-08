@@ -4,6 +4,10 @@
 
 angular.module('app.authFact', [])
 .factory('authFactory', function($q, $http){
+
+	var loggedInUser = null;
+
+
 	var login = function(email, password){
 		console.log("authFactory getting email: " + email + ", password: " + password);
 		return $http({
@@ -11,7 +15,7 @@ angular.module('app.authFact', [])
 			url: '/login',
 			data: {email: email, password: password}
 		}).then(function(res){
-			console.log(res);
+			console.log(res.data);
 		});
 	}
 
@@ -28,6 +32,7 @@ angular.module('app.authFact', [])
 
 	return {
 		login: login,
-		signup: signup
+		signup: signup,
+		loggedInUser: loggedInUser
 	}
 });
