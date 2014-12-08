@@ -60,7 +60,7 @@ angular.module('app.add', [])
   }
 
   $scope.showNextPrompt = function(){
-    var phrases = ["","Tell us more - can you be specific? (or skip below)","Let's get really deep - why do you want that to be the case?"];
+    var phrases = ["","Tell us more - can you be specific? Try to think of what's behind your first reason - what makes that important to you? (or you can skip below)","Let's get really deep - why do you want that to be the case? What would this do in your life? Would it bring you happiness, prosperity, or growth? (or you can skip below)"];
     var buttonText = ["","Let's go deeper", "OK, let's setup reminders!"];
 
     var currentVal = $scope.data.goal.why.length;
