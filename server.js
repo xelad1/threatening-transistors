@@ -105,6 +105,9 @@ app.delete('/goals/:id', function(req, res) {
   })
 });  
 
+app.get('/goals',function(req,res){
+  services.getGoals(req.session.userId,res);
+})
 
 app.post('/goals', function(req,res){
 	//goals.push(req.body);
