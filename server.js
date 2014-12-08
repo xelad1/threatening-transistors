@@ -28,16 +28,17 @@ connection.once('open', function callback () {
 
 
 //this will add a new user to the database, we can add a test case for authentication later
-var testUser = new db.User({name:"hello", email:"cool@gmail.com", password:"test123"});
-testUser.save(function (err) {if (err) console.log ('Error on save!')});
+// var testUser = new db.User({name:"hello", email:"cool@gmail.com", password:"test123"});
+// testUser.save(function (err) {if (err) console.log ('Error on save!')});
 
-db.User.find({name:"hello"}).exec(function(err, result) {
-  if (!err) {
-    console.log("found!")
-  } else {
-    console.log("error");
-  };
-});
+// db.User.find({name:"hello"}).exec(function(err, result) {
+//   if (!err) {
+//     console.log(result)
+//   } else {
+//     console.log("error");
+//   };
+// });
+
 
 
 //for email
@@ -58,30 +59,14 @@ app.use(methodOverride());
 app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 
-//test data for email 
-var testData = {
-  name: "Rachel",
-  goal: "exercise twice a day",
-  daysAway: "5 days",
-  reason: "to stay healthy"
-}
-var htmlPath = './public/emailTemplate.html'; 
-var htmlContent = fs.readFileSync(htmlPath,'utf8');
-var res = nunjucks.renderString(htmlContent, testData);
 
 require('./passport')(passport);                                // pass passport for configuration
 //require('./app/routes.js')(app, passport);
 
+var goals = [];
 
-var emailData = {
-  from: 'Excited User <hazeeee@gmail.com>',
-  to: 'hazeeee@gmail.com',
-  subject: 'Hello',
-  html: res
-};
 
 //tasks array for testing
-var goals = [];
 
 app.post('/signup', passport.authenticate('local-signup', {
     successRedirect : '/', // redirect to the secure profile section
@@ -116,11 +101,12 @@ app.delete('/goals/:id', function(req, res) {
 });
 
 app.post('/goals', function(req,res){
-	goals.push(req.body.goal)
-  console.log('req.body: ', req.body);
+	goals.push(req.body);
+  //console.log('req.body: ', req.body);
   var goalData = req.body;
-  var goal= goalData.goal;
-  var dueDate = goalData.dueDate;
+  var goalText= goalData.goalContent;
+  var startDate = goalData.startDate
+  var dueDate = goalData.endDate;
   var why = goalData.why;
   var freq;
   for(key in goalData.freq){
@@ -128,9 +114,22 @@ app.post('/goals', function(req,res){
       freq = key;
     }
   }
-
-})
-
+// will send an email to user on post request /goals  
+  var testData = {
+  name: "Rachel",
+  goal: goalData.goal,
+  daysAway: '3 days away',
+  reason: why
+}
+var htmlPath = './public/emailTemplate.html'; 
+var htmlContent = fs.readFileSync(htmlPath,'utf8');
+var res = nunjucks.renderString(htmlContent, testData);
+var emailData = {
+  from: 'Excited User <hazeeee@gmail.com>',
+  to: 'hazeeee@gmail.com',
+  subject: 'your goal!',
+  html: res
+};
 var date = new Date(2014, 11, 04, 22, 54, 0); // will send an email at this time
 
 var j = schedule.scheduleJob(date, function(){
@@ -138,6 +137,10 @@ var j = schedule.scheduleJob(date, function(){
   console.log(body);
 });
 });
+//// end of email to user on post request
+
+})
+
 
 app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), function(){
