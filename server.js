@@ -25,13 +25,6 @@ connection.once('open', function callback () {
   console.log("Successful connection to database");
 });
 
-// inputting user / data as a test on database
-
-
-//this will add a new user to the database, we can add a test case for authentication later
-// var testUser = new db.User({name:"hello", email:"cool@gmail.com", password:"test123"});
-// testUser.save(function (err) {if (err) console.log ('Error on save!')});
-
 db.User.find({name:"hello"}).exec(function(err, result) {
   if (!err) {
     console.log(result);
@@ -39,16 +32,6 @@ db.User.find({name:"hello"}).exec(function(err, result) {
     console.log("error");
   }
 });
-
-// Code below will grab goals by user id once it is available on database.
-
-// db.Goals.find({userId:''}).exec(function(err, result) {
-//   if (!err) {
-//     console.log(result);
-//   } else{
-//     console.log("error");
-//   }
-// })
 
 
 //for email
@@ -111,13 +94,13 @@ app.delete('/goals/:id', function(req, res) {
 });
 
 app.post('/goals', function(req,res){
-	goals.push(req.body);
+	//goals.push(req.body);
   //console.log('req.body: ', req.body);
   var goalData = req.body;
   var goalText= goalData.goalContent;
   var startDate = goalData.startDate
   var dueDate = goalData.endDate;
-  var why = goalData.why;
+  var why = goalData.why; 
   var freq;
   for(var key in goalData.freq){
     if(goalData.freq[key]){
@@ -129,8 +112,8 @@ app.post('/goals', function(req,res){
     //if no goals in goal db create new goal for user
     if(!goals){
       db.Goals.create({
-        userId: session.userId,
-        email: session.email, 
+        userId: 'test_userId',// <--replace with: session.userId,
+        email: 'rsison87@gmail.com', //<--replace with: session.email, 
         goals: [goalData]
       }, function(err, goal){
         if(err){
