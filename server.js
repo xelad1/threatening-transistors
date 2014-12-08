@@ -84,14 +84,22 @@ app.get('/logout', function(req, res){
 });
 
 app.delete('/goals/:id', function(req, res) {
-  if(goals.length <= req.params.id) { // modify this part depending on data model id =index
-    res.statusCode = 404;
-    return res.send('Error 404: No quote found');
-  }  
+  db.Goals.findOne({'userId': req.session.userId}, function(err, goals){
+    if(goals.length <= req.params.id){
+      res.statusCode = 404;
+      return res.send('Error 404: No goal found');
+    }else{
+      goals.splice(req.params.id, 1);
+      goals.save(function(err){
+        if(err){
+          res.send(err);
+        }
+      res.status(201).send("Goal deleted successfully");
+      });
+    }
+  })
+});  
 
-	goals.splice(req.params.id, 1); // deletes the slected goal
-  res.json(true);
-});
 
 app.post('/goals', function(req,res){
 	//goals.push(req.body);
@@ -108,12 +116,12 @@ app.post('/goals', function(req,res){
     }
   }
   //check to see if user is already in goal database (has already saved at least one goal)
-  db.Goals.findOne({'userId': session.userId }, function(err, goals){
+  db.Goals.findOne({'userId': req.session.userId }, function(err, goals){
     //if no goals in goal db create new goal for user
     if(!goals){
       db.Goals.create({
-        userId: 'test_userId',// <--replace with: session.userId,
-        email: 'rsison87@gmail.com', //<--replace with: session.email, 
+        userId: 'test_userId',// <--replace with: req.session.userId,
+        email: 'rsison87@gmail.com', //<--replace with: req.session.email, 
         goals: [goalData]
       }, function(err, goal){
         if(err){
