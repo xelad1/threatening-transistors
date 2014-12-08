@@ -67,9 +67,6 @@ angular.module('app.add', [])
 
     $('#sendButton').text(buttonText[currentVal]);
     $('.inspiration').attr('placeholder', phrases[currentVal]);
-
-    console.log($scope.data.goal.why);
-
   }
 
   //Scope function to attach to the goalsService creation function
@@ -81,9 +78,9 @@ angular.module('app.add', [])
     }
 
     var input = $scope.prepareData($scope.data.goal);
-    console.log(input);
+
     goalsService.createGoal(input).then(function(res){
-      console.log(res);
+      console.log("Server says" + res);
       $scope.showCreateSuccess();
     });
   }
