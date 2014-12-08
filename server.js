@@ -124,7 +124,7 @@ app.post('/goals', function(req,res){
     }
   }
   //check to see if user is already in goal database (has already saved at least one goal)
-  db.Goals.findOne({'userId': req.session.userId }, function(err, goals){
+  db.Goals.findOne({'userId': 'test_userId' }, function(err, goals){
     //if no goals in goal db create new goal for user
     if(!goals){
       db.Goals.create({
