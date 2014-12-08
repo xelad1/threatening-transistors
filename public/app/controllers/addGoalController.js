@@ -95,8 +95,10 @@ angular.module('app.add', [])
   //('.datepicker' doesn't exist before load)
 
   $scope.$on('$viewContentLoaded', function(){
+    
     var $input = $('.datepicker').pickadate();
-    $scope.picker = $input.pickadate('picker')
+    $scope.picker = $input.pickadate('picker');
+
   });
 
 });
