@@ -10,7 +10,7 @@ angular.module('app.goals', [])
 	var goalsList = [
 		{
 		  _id: "7d7hebsd6f",
-          goal: "Acheive inner peace",
+          content: "Acheive inner peace",
           endDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
           startDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
           why: ["I really want to be a yogi","Because I want to be thin"],
@@ -18,7 +18,7 @@ angular.module('app.goals', [])
         },
         {
           _id: "7gydksgg4",
-          goal: "Help inner city children",
+          content: "Help inner city children",
           endDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
           startDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
           why: ["I want to protect kids from abuse","Because I never stood up when I was young"],
@@ -26,7 +26,7 @@ angular.module('app.goals', [])
         },
         {
           _id: "5f5dtgbe",
-          goal: "Lose 30lbs",
+          content: "Lose 30lbs",
           endDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
           startDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
           why: ["I want to be sexy again","So I can score with hot chicks"],
