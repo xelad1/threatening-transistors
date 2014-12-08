@@ -44,10 +44,11 @@ app.use(methodOverride());
 app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 
+//test data for email 
 var testData = {
   name: "Rachel",
   goal: "exercise twice a day",
-  daysAaway: "5 days",
+  daysAway: "5 days",
   reason: "to stay healthy"
 }
 var htmlPath = './public/emailTemplate.html'; 
