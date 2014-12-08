@@ -49,14 +49,22 @@ angular.module('app.goals', [])
 	$scope.celebrateSuccess = function(event){
 		
 		$('.success-dimmer').dimmer('show');
-		//delete item here
+		
+		$scope.successDelete(event);
+	}
+
+	$scope.successDelete = function(event){
+		var idToDelete = $(event.target).closest('.item').find('.goal-id').val();
+		goalsService.deleteGoal(idToDelete);
+
 		setTimeout(function(){
 			$('.success-dimmer').dimmer('hide');
+			
+			//then refresh the view
+
+			$scope.getGoals();
+
 		}, 2000);
-
-		//then refresh the view
-
-		$scope.getGoals();
 	}
 
 	//Middle-man function for confirming deletion of a goal.
