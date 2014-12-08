@@ -39,7 +39,8 @@ angular.module('app.goals', [])
 	$scope.getGoals = function(){
 		$scope.data.goalsList = goalsList;
 		goalsService.getGoals().then(function(data){
-			console.log(data);
+			$scope.data.goalsList = data[0]['goals'];
+			console.log(JSON.stringify(data[0]['goals']));
 		});
 	}
 
@@ -52,6 +53,10 @@ angular.module('app.goals', [])
 		setTimeout(function(){
 			$('.success-dimmer').dimmer('hide');
 		}, 2000);
+
+		//then refresh the view
+
+		$scope.getGoals();
 	}
 
 	//Middle-man function for confirming deletion of a goal.
@@ -72,6 +77,10 @@ angular.module('app.goals', [])
 		var idToDelete = $scope.deletionPending.closest('.item').find('.goal-id').val();
 		goalsService.deleteGoal(idToDelete);
 		$scope.closeConfirmDimmer();
+
+		//then refresh the view
+
+		$scope.getGoals();
 	}
 
 	//Function to close dimmer flash. Used above and directly from the "no" button on
