@@ -18,7 +18,7 @@ angular.module('app.add', [])
             monthly: false
           }
         }
-      };
+  };
 
   //data model for the users current goal inspiration. pushes to $scope.data.goal.why array
 
@@ -30,6 +30,9 @@ angular.module('app.add', [])
 
   //this tracks whether a required field has been touched but not filled in
   $scope.conflict = false;
+
+  $scope.phrases = ["Now tell us why! What makes this a goal worth acheiving for you?","Tell us more - can you be specific? Try to think of what's behind your first reason - what makes that important to you? (or you can skip below)","Let's get really deep - why do you want that to be the case? What would this do in your life? Would it bring you happiness, prosperity, or growth? (or you can skip below)"];
+  $scope.buttonText = ["Let's Rock!","Let's go deeper", "OK, let's setup reminders!"];
 
   //The require function checks on ng-blur to see if the blurred field has been filled in
   //If not, it will set the class "error" on the input field (passed in here as event.target)
@@ -60,13 +63,32 @@ angular.module('app.add', [])
   }
 
   $scope.showNextPrompt = function(){
-    var phrases = ["","Tell us more - can you be specific? Try to think of what's behind your first reason - what makes that important to you? (or you can skip below)","Let's get really deep - why do you want that to be the case? What would this do in your life? Would it bring you happiness, prosperity, or growth? (or you can skip below)"];
-    var buttonText = ["","Let's go deeper", "OK, let's setup reminders!"];
 
     var currentVal = $scope.data.goal.why.length;
 
-    $('#sendButton').text(buttonText[currentVal]);
-    $('.inspiration').attr('placeholder', phrases[currentVal]);
+    $('#sendButton').text($scope.buttonText[currentVal]);
+    $('.inspiration').attr('placeholder', $scope.phrases[currentVal]);
+  }
+
+  $scope.clearForm = function(){
+    $scope.data = {
+            goal: {
+              goal: "",
+              endDate: "",
+              why: [],
+              freq: {
+                daily: false,
+                weekly: false,
+                monthly: false
+              }
+            }
+      };
+    $scope.showSkipButton = false;
+    $scope.conflict = false;
+
+    $('#sendButton').text($scope.buttonText[0]);
+    $('.inspiration').attr('placeholder', $scope.phrases[0]);
+
   }
 
   //Scope function to attach to the goalsService creation function
@@ -82,6 +104,7 @@ angular.module('app.add', [])
     goalsService.createGoal(input).then(function(res){
       console.log("Server says" + res);
       $scope.showCreateSuccess();
+      $scope.clearForm();
     });
   }
 
