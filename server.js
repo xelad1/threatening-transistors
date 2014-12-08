@@ -36,7 +36,7 @@ db.User.find({name:"hello"}).exec(function(err, result) {
     console.log(result);
   } else {
     console.log("error");
-  };
+  }
 });
 
 // Code below will grab goals by user id once it is available on database.
@@ -118,11 +118,37 @@ app.post('/goals', function(req,res){
   var dueDate = goalData.endDate;
   var why = goalData.why;
   var freq;
-  for(key in goalData.freq){
+  for(var key in goalData.freq){
     if(goalData.freq[key]){
       freq = key;
     }
   }
+  //check to see if user is already in goal database (has already saved at least one goal)
+  db.Goals.findOne({'userId': session.userId }, function(err, goals){
+    //if no goals in goal db create new goal for user
+    if(!goals){
+      db.Goals.create({
+        userId: session.userId,
+        email: session.email, 
+        goals: [goalData]
+      }, function(err, goal){
+        if(err){
+          res.send(err);
+        }
+      });
+      res.status(201).send("Users first goal added to database successfully");
+    }else{
+
+      goals.goals.push(goalData); //push to array within goals ie, goals.goal.push(xxx)
+      goals.save(function(err){
+        if(err){
+          res.send(err);
+        }
+      res.status(201).send("Goal Added to existing goals successfully");
+      });
+    }
+  });
+
 // will send an email to user on post request /goals  
   var testData = {
   name: "Rachel",
@@ -132,71 +158,30 @@ app.post('/goals', function(req,res){
 }
 var htmlPath = './public/emailTemplate.html'; 
 var htmlContent = fs.readFileSync(htmlPath,'utf8');
-var res = nunjucks.renderString(htmlContent, testData);
+var response = nunjucks.renderString(htmlContent, testData);
 var emailData = {
   from: 'Excited User <hazeeee@gmail.com>',
   to: 'hazeeee@gmail.com',
   subject: 'your goal!',
-  html: res
+  html: response
 };
 var date = new Date(2014, 11, 04, 22, 54, 0); // will send an email at this time this data used for testing purposes
 
-var j = schedule.scheduleJob(date, function(){
-  mailgun.messages().send(emailData, function (error, body) {
-  console.log(body);
-});
-});
+
+// var j = schedule.scheduleJob(date, function(){
+//   mailgun.messages().send(emailData, function (error, body) {
+//   console.log(body);
+// });
+// });
 //// end of email to user on post request
 
-})
+// })
 
 
 app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), function(){
   console.log("Applet listening on port " + process.env.PORT);
 });
-
-
-//******************************************************************************************
-/*
-
-this is the documentation for how to create a message (api_key is legit):
-***************
-var api_key = 'key-e81b3d37fc5adcc1bc5c21f5267a90d5';
-var domain = 'selfinspi.red';
-var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
-
-var data = {
-  from: 'Excited User <rsison87@gmail.com>',
-  to: 'derek.barncard@gmail.com',
-  subject: 'Hello',
-  text: 'Testing some Mailgun awesomness! TEST2!!'
-};
-
-mailgun.messages().send(data, function (error, body) {
-  console.log(body);
-});
-*/
-
-
-//input from form is saved to these variables
-var goal;
-var inspiration;
-var emailAddress;
-var frequency;
-var user;
-//then input into this function:
-// var sendMessageSetInterval = function (goal, inspiration, emailAddress, frequency, user){
-//   var data = {
-//     from: 'Reminder Team <reminders.selfinspi.red>',
-//     to: emailAddress,
-//     subject: "Hello" + user + ", just a reminder about WHY you're doing what you're doing!",
-//     text: inspiration // 
-//   }
-  // var timerFunction(data) {
-  //   mailgun.messages.send(data, function error, body){
-  //   console.log(body);
-  // }
 
 
 

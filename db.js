@@ -23,8 +23,10 @@ userSchema.methods.validPassword = function(password) {
 var User = mongoose.model('User', userSchema);
 
 var goalsSchema = new Schema({
+  //TODO: putting the goals into userID
   userId: {type: Schema.Types.ObjectId, ref: 'User'},
-  goal: [{ 
+  email: String,
+  goals: [{ 
     content: String,
     startDate: Date,
     endDate: Date,
