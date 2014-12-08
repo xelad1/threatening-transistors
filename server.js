@@ -94,7 +94,7 @@ app.delete('/goals/:id', function(req, res) {
       res.statusCode = 404;
       return res.send('Error 404: No goal found');
     }else{
-      goals.splice(req.params.id, 1);
+      goals.goals.splice(req.params.id, 1);
       goals.save(function(err){
         if(err){
           res.send(err);

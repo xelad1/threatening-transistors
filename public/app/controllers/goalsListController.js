@@ -39,7 +39,8 @@ angular.module('app.goals', [])
 	$scope.getGoals = function(){
 		$scope.data.goalsList = goalsList;
 		goalsService.getGoals().then(function(data){
-			console.log(data);
+			$scope.data.goalsList = data[0]['goals'];
+			console.log(JSON.stringify(data[0]['goals']));
 		});
 	}
 
