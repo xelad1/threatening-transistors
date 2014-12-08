@@ -7,6 +7,8 @@ angular.module('app.login', [])
 	$scope.email = "";
 	$scope.password = ""
 
+	//Calls factory login function
+
 	$scope.login = function(){
 		authFactory.login($scope.email, $scope.password);
 	}

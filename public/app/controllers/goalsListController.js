@@ -37,6 +37,8 @@ angular.module('app.goals', [])
 		$scope.data.goalsList = goalsList;
 	}
 
+	//Shows success dimmer flash and then deletes goal when the user clicks "I did it"
+
 	$scope.celebrateSuccess = function(event){
 		
 		$('.success-dimmer').dimmer('show');
@@ -46,11 +48,18 @@ angular.module('app.goals', [])
 		}, 2000);
 	}
 
+	//Middle-man function for confirming deletion of a goal.
+	//Shows the confirmation dimmer flash and stores the item so we can access it if the
+	//user confirms
+
 	$scope.deleteWithConfirm = function(event){
 		$('.delete-goal-dimmer').dimmer('show');
 
 		$scope.deletionPending = $(event.target);
 	}
+
+	//Activated when the user confirms deletion. Deletes the goal we're storing
+	//and closes the dimmer flash window
 
 	$scope.confirmedDelete = function(){
 		//do stuff here to actually delete the element at $scope.deletionPending
@@ -58,10 +67,14 @@ angular.module('app.goals', [])
 		$scope.closeConfirmDimmer();
 	}
 
+	//Function to close dimmer flash. Used above and directly from the "no" button on
+	//deletion confirm.
+
 	$scope.closeConfirmDimmer = function(){
 		$('.delete-goal-dimmer').dimmer('hide');
 	}
 
+	//call our function to get goals on load
 	$scope.getGoals();
 
 });
