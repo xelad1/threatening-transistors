@@ -1,3 +1,7 @@
+/*****************************************************
+*  Factory for login / logout / and persistent auth  *
+*****************************************************/
+
 angular.module('app.authFact', [])
 .factory('authFactory', function($q, $http){
 	var login = function(email, password){

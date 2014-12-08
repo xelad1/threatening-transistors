@@ -1,3 +1,7 @@
+/******************************************************
+*  Factory for adding, listing, and processing goals  *
+******************************************************/
+
 angular.module('app.goalFact', [])
 .factory('goalsService', function($q, $http){
 	var createGoal = function(goal){

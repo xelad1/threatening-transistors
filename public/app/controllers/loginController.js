@@ -1,3 +1,7 @@
+/*******************************************
+*  Controller for the login template       *
+*******************************************/
+
 angular.module('app.login', [])
 .controller('loginController', function($scope, authFactory){
 	$scope.email = "";
