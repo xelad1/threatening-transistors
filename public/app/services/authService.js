@@ -7,7 +7,6 @@ angular.module('app.authFact', [])
 
 	var loggedInUser = null;
 
-
 	var login = function(email, password){
 		console.log("authFactory getting email: " + email + ", password: " + password);
 		return $http({
