@@ -5,11 +5,11 @@
 angular.module('app', ['ui.router', 'app.signup', 'app.login', 'app.add', 'app.goals', 'app.authFact', 'app.goalFact'])
 .config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise("/");
+  $urlRouterProvider.otherwise("/login");
 
 	$stateProvider
   .state('addGoalState', {
-    url: "/",
+    url: "/profile",
     views: {
       "addGoal": { 
         templateUrl: "/app/views/addGoal.template.html" ,
