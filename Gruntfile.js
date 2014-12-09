@@ -23,10 +23,25 @@ module.exports = function(grunt) {
         // }]
       },
     },
-  })
+    jshint: {
+      files: ['Gruntfile.js', './*.js', 'public/*.js', 'public/app/**.*.js'],
+      options: {
+        // options here to override JSHint defaults
+        globals: {
+          jQuery: true,
+          console: true,
+          module: true,
+          document: true
+        }
+      }
+    },
+  });
 
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-explainjs');
 
   grunt.registerTask('buildDocs', ['explainjs']); 
-}
+  grunt.registerTask('hint', ['jshint']);
+  grunt.registerTask('preflight', ['jshint', 'explainjs']);
+};
 
