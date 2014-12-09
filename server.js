@@ -58,7 +58,7 @@ require('./passport')(passport);                                // pass passport
 
 var goals = [];
 
-
+app.set()
 //tasks array for testing
 
 app.post('/signup', passport.authenticate('local-signup', {
@@ -67,9 +67,9 @@ app.post('/signup', passport.authenticate('local-signup', {
     failureFlash : true // allow flash messages
 }));
 
-// app.get('/login', function(req,res) {
-
-// })
+app.get('/login', function(req,res) {
+  res.send('SUCCESSFUL SIGNUP');
+  });
 
 //.authenticate with local-sign from passport on a post request on logon page.
 app.post('/login', passport.authenticate('local-login', { 
