@@ -165,9 +165,9 @@ var htmlPath = './public/emailTemplate.html';
 var htmlContent = fs.readFileSync(htmlPath,'utf8');
 var response = nunjucks.renderString(htmlContent, testData);
 var emailData = {
-  from: 'Excited User <hazeeee@gmail.com>',
+  from: 'Selfinspi.red <selfinspi.red@gmail.com>',
   to: 'hazeeee@gmail.com',
-  subject: 'your goal!',
+  subject: "Don't Forget What's Important",
   html: response
 };
 var date = new Date(2014, 11, 04, 22, 54, 0); // will send an email at this time this data used for testing purposes
