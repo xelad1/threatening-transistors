@@ -115,7 +115,7 @@ app.post('/goals', function(req,res){
   var goalData = req.body;
   console.log('req.body: ', req.body);
   var goalText= goalData.goalContent;
-  var startDate = goalData.startDate
+  var startDate = goalData.startDate;
   var dueDate = goalData.endDate;
   var why = goalData.why; 
   var freq;
@@ -150,12 +150,15 @@ app.post('/goals', function(req,res){
   });
 
 // will send an email to user on post request /goals  
+DifferNumDays = ((new Date(goalData.endDate.valueOf()) - new Date(goalData.startDate.valueOf()))/(24*60*60*1000));
+DifferNumDays = Math.floor(DifferNumDays);
+console.log(DifferNumDays,"worked");  
 var whyIdx = Math.floor(Math.random()*why.length);
 console.log(whyIdx);
   var testData = {
   name: "Rachel",
   goal: goalData.content,
-  daysAway: '3 days away',
+  daysAway: DifferNumDays +' days',
   reason: why[whyIdx]
 }
 var htmlPath = './public/emailTemplate.html'; 
