@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/DESERT-LEOPARD/threatening-transistors.png?label=ready&title=Ready)](https://waffle.io/DESERT-LEOPARD/threatening-transistors)
 [![Stories in Ready](https://badge.waffle.io/threatening-transistors/threatening-transistors.svg?label=ready&title=Ready)](http://waffle.io/threatening-transistors/threatening-transistors)
 
 # Project Name SelfInspi.red
