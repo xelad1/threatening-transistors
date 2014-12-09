@@ -67,6 +67,7 @@ app.post('/signup', passport.authenticate('local-signup', {
     failureFlash : true // allow flash messages
 }));
 
+
 app.get('/login', function(req,res) {
   res.send('SUCCESSFUL SIGNUP');
   });

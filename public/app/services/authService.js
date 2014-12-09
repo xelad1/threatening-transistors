@@ -18,6 +18,17 @@ angular.module('app.authFact', [])
 		});
 	}
 
+	var getLogin = function(){
+		console.log("authFactory getting success message");
+		return $http({
+			method: 'GET',
+			url: '/login'
+		}).then(function(res){
+			res.redirect("/");
+		});
+	}
+
+
 	var signup = function(email, name, password){
 		console.log("authFactory signup getting email: " + email + ", name: " + name + ", password: " + password);
 		return $http({
@@ -30,6 +41,7 @@ angular.module('app.authFact', [])
 	}
 
 	return {
+		getLogin: getLogin,
 		login: login,
 		signup: signup,
 		loggedInUser: loggedInUser

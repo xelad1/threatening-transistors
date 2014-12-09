@@ -12,4 +12,7 @@ angular.module('app.login', [])
 	$scope.login = function(){
 		authFactory.login($scope.email, $scope.password);
 	}
+	$scope.getLogin = function(){
+		authFactory.getLogin();
+	}
 });
