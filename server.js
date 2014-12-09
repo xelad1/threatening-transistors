@@ -14,7 +14,7 @@ var mongoose = require('mongoose');
 var db = require('./db');
 var fs = require('fs');
 var nunjucks = require('nunjucks');
-var services = require('./middleware');
+var services = require('./Services');
 
 // MONGOOSE
 mongo_uri = process.env.MONGO_URI || 'mongodb://threatening:transistors@ds061360.mongolab.com:61360/heroku_app32253810';
@@ -165,9 +165,9 @@ var htmlPath = './public/emailTemplate.html';
 var htmlContent = fs.readFileSync(htmlPath,'utf8');
 var response = nunjucks.renderString(htmlContent, testData);
 var emailData = {
-  from: 'Excited User <hazeeee@gmail.com>',
+  from: 'Selfinspi.red <selfinspi.red@gmail.com>',
   to: 'hazeeee@gmail.com',
-  subject: 'your goal!',
+  subject: "Don't Forget What's Important",
   html: response
 };
 var date = new Date(2014, 11, 04, 22, 54, 0); // will send an email at this time this data used for testing purposes
