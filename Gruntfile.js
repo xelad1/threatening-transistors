@@ -27,6 +27,6 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-explainjs');
 
-  grunt.registerTask('explain', ['explainjs']); 
+  grunt.registerTask('buildDocs', ['explainjs']); 
 }
 
