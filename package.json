@@ -43,5 +43,9 @@
     "passport-facebook": "^1.0.3",
     "passport-local": "~1.0.0",
     "path": "^0.4.9"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-explainjs": "0.0.2"
   }
 }
