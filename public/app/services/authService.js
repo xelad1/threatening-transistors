@@ -3,7 +3,7 @@
 *****************************************************/
 
 angular.module('app.authFact', [])
-.factory('authFactory', function($q, $http){
+.factory('authFactory', function($q, $http, $location){
 
 	var loggedInUser = null;
 
@@ -15,6 +15,7 @@ angular.module('app.authFact', [])
 			data: {email: email, password: password}
 		}).then(function(res){
 			console.log(res.data);
+			$location.url("/");
 		});
 	}
 
@@ -24,7 +25,8 @@ angular.module('app.authFact', [])
 			method: 'GET',
 			url: '/login'
 		}).then(function(res){
-			res.redirect("/");
+			$location.url("/");
+
 		});
 	}
 
@@ -36,7 +38,8 @@ angular.module('app.authFact', [])
 			url: '/signup',
 			data: {email: email, name: name, password: password}
 		}).then(function(res){
-			console.log(res);
+			console.log(res.data);
+			$location.url("/");
 		});
 	}
 

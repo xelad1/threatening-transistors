@@ -3,7 +3,7 @@
 *******************************************/
 
 angular.module('app.add', [])
-.controller('addGoalController', function(goalsService, $scope){
+.controller('addGoalController', function(goalsService, $scope, $rootScope){
 	
   /* VARIABLE DEFINITIONS */
 
@@ -121,6 +121,7 @@ angular.module('app.add', [])
       console.log("Server says" + res);
       $scope.showCreateSuccess();
       $scope.clearForm();
+      $rootScope.$broadcast('updated', {});
     });
   }
 
