@@ -39,7 +39,7 @@ module.exports = function(passport) {
 
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
-        User.findOne({ 'local.email' :  email }, function(err, user) {
+        User.findOne({ 'email' :  email }, function(err, user) {
             // if there are any errors, return the error
             if (err) {return done(err);}
             // check to see if theres already a user with that email
@@ -50,7 +50,7 @@ module.exports = function(passport) {
                 // if there is no user with that email
                 // create the user
                 var newUser = new User();
-                console.log(newUser)
+                // console.log(newUser)
                 // set the user's local credentials
                 newUser.name = req.body.name;
                 newUser.email = email;
