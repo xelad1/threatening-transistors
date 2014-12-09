@@ -67,13 +67,18 @@ app.post('/signup', passport.authenticate('local-signup', {
     failureFlash : true // allow flash messages
 }));
 
+
 app.get('/login', function(req,res) {
   res.send('SUCCESSFUL SIGNUP');
   });
 
+app.get('/loggedin', function(req,res) {
+  res.send('Seccuessful');
+})
+
 //.authenticate with local-sign from passport on a post request on logon page.
 app.post('/login', passport.authenticate('local-login', { 
-  successRedirect: '/',
+  successRedirect: '/loggedin',
   failureRedirect: '/login',
   failureFlash : true // allow flash messages
   })

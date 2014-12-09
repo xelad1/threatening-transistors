@@ -101,4 +101,8 @@ angular.module('app.goals', [])
 	//call our function to get goals on load
 	$scope.getGoals();
 
+	$scope.$on('updated', function(){
+		$scope.getGoals();
+	})
+
 });
