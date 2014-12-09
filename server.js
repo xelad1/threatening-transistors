@@ -14,7 +14,7 @@ var mongoose = require('mongoose');
 var db = require('./db');
 var fs = require('fs');
 var nunjucks = require('nunjucks');
-var services = require('./middleware');
+var services = require('./Services');
 
 // MONGOOSE
 mongo_uri = process.env.MONGO_URI || 'mongodb://threatening:transistors@ds061360.mongolab.com:61360/heroku_app32253810';
