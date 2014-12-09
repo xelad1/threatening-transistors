@@ -88,6 +88,7 @@ app.get('/logout', function(req, res){
   req.session.notice = "You have successfully been logged out " + name + "!";
 });
 
+//deletes user id on a delete request on the /goals/:id url. 
 app.delete('/goals/:id', function(req, res) {
   db.Goals.findOne({'userId': req.session.userId}, function(err, goals){
     if(goals.length <= req.params.id){
@@ -153,6 +154,7 @@ app.post('/goals', function(req,res){
 DifferNumDays = ((new Date(goalData.endDate.valueOf()) - new Date(goalData.startDate.valueOf()))/(24*60*60*1000));
 DifferNumDays = Math.floor(DifferNumDays);
 console.log(DifferNumDays,"worked");  
+// Generates a random index to email one of the reasons that the user has set.
 var whyIdx = Math.floor(Math.random()*why.length);
 console.log(whyIdx);
   var testData = {
@@ -161,6 +163,7 @@ console.log(whyIdx);
   daysAway: DifferNumDays +' days',
   reason: why[whyIdx]
 }
+// sends email on post request... this was put here for testing reasons. It should ideally grab from the database and send out according to time.
 var htmlPath = './public/emailTemplate.html'; 
 var htmlContent = fs.readFileSync(htmlPath,'utf8');
 var response = nunjucks.renderString(htmlContent, testData);
