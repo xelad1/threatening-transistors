@@ -163,7 +163,7 @@ console.log(DifferNumDays,"worked");
 var whyIdx = Math.floor(Math.random()*why.length);
 console.log(whyIdx);
   var testData = {
-  name: "Rachel",
+  name: "Marcus",
   goal: goalData.content,
   daysAway: DifferNumDays +' days',
   reason: why[whyIdx]
@@ -174,7 +174,7 @@ var htmlContent = fs.readFileSync(htmlPath,'utf8');
 var response = nunjucks.renderString(htmlContent, testData);
 var emailData = {
   from: 'Selfinspi.red <selfinspi.red@gmail.com>',
-  to: 'hazeeee@gmail.com',
+  to: 'derek.barncard@gmail.com',
   subject: "Don't Forget What's Important",
   html: response
 };
