@@ -15,12 +15,12 @@ exports.singupError = function (req, res) {
 
 exports.loginSuccess = function (req, res) {
   res.status(200)
-  res.send('Login was successfull')
+  res.send('Login was successful')
 }
 
 exports.loginError = function (req, res) {
   res.status(404)
-  res.send('Your login details were incorrect. Please try again')
+  res.send('404- Your login details were incorrect. Please try again')
 }
 
 
@@ -61,7 +61,7 @@ exports.removeGoal = function (req, res) {
 exports.addGoal = function (req, res) {
   var goalData = req.body;
   var name = req.session.name || 'Marcus'
-  
+  console.log('req session details',req.session.userID)
   //check to see if user is already in goal database (has already saved at least one goal)
   Goal.findOne({'userId': req.session.userId }, function(err, userGoalList){
     //if no goals in goal db create new goal for user
@@ -86,6 +86,6 @@ exports.addGoal = function (req, res) {
     }
   });
 
-  email.handler(goalData, name);
+  emailHandler(goalData, name);
 
 };

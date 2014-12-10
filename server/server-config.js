@@ -15,11 +15,6 @@ var nunjucks = require('nunjucks');
 var db = require('./config.js');
 var handler = require('./lib/routehandlers.js');
 
-/********** Email Config **************/
-var api_key = 'key-e81b3d37fc5adcc1bc5c21f5267a90d5';
-var domain = 'selfinspi.red';
-var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
-
 /********** App setup **************/
 var app = express();
 
