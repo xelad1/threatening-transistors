@@ -4,16 +4,18 @@ var bcrypt = require('bcrypt-nodejs');
 var Goal = require('../models/goal.js')
 var db = require('../config.js');
 var Goal = require('../models/goal.js');
-var emailHandler = require('.lib/emailHandler.js');
+var emailHandler = require('./emailHandler.js');
 
+require('./auth.js')(passport);
 
-exports.signupHandler = function () {passport.authenticate('local-signup', {
+exports.signupHandler = function () {
+  passport.authenticate('local-signup', {
     successRedirect : '/loginSuccess', // redirect to the secure profile section
     failureRedirect : '/signupError', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
 })};
 
-exports.signupError = function () {
+exports.singupError = function () {
   res.status(404)
   res.send('Your signup details were either invalid or a duplicate of an existing user. Please try again')
 }
@@ -37,10 +39,10 @@ exports.loginHandler = function () {
 }
 
 exports.logout = function (req, res) {
-  req.session.destroy(function (err), {
+  req.session.destroy(function (err) {
     req.send("successful logout")
   })
-});
+};
 
 exports.getGoals = function (req, response) {
   Goal.find({userId:req.session.userId}).exec(function(err, result) {
@@ -52,9 +54,6 @@ exports.getGoals = function (req, response) {
       }
     });
 };
-
-
-exports.addGoal = function () {};
 
 exports.removeGoal = function (req, res) {
   Goal.findOne({'userId': req.session.userId}, function(err, goals){
@@ -102,5 +101,5 @@ exports.addGoal = function (req, res) {
   });
 
   email.handler(goalData, name);
-  
+
 };

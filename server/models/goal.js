@@ -1,9 +1,10 @@
 var db = require('../config.js');
 var crypto = require('crypto');
 var mongoose = require('mongoose');
+var User = require('./user.js')
 
 var goalSchema = mongoose.Schema({
-  userId: {type: Schema.Types.ObjectId, ref: 'User'},
+  userId: {type: mongoose.Schema.Types.ObjectId, ref: User},
   email: String,
   goals: [{ 
     content: String,
@@ -13,8 +14,6 @@ var goalSchema = mongoose.Schema({
     why: [String]
   }]
 });
-
-//TODO: putting the goals into userID
 
 var Goal = mongoose.model('Goal', goalSchema);
 

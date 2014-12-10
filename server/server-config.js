@@ -8,15 +8,13 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var flash = require('connect-flash');
 var methodOverride = require('method-override');
-var schedule = require('node-schedule');
 var mongoose = require('mongoose');
-var fs = require('fs');
 var nunjucks = require('nunjucks');
 
 /********** Helper Files **************/
 var db = require('./config.js');
-var handler = require('/.lib/routehandlers.js');
-var emailHandler = require('.lib/emailHandler.js');
+var handler = require('./lib/routehandlers.js');
+
 /********** Email Config **************/
 var api_key = 'key-e81b3d37fc5adcc1bc5c21f5267a90d5';
 var domain = 'selfinspi.red';
@@ -30,13 +28,16 @@ app.use(morgan('dev'));                                         // log every req
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
-app.use(session({ secret: 'FollowTheHerd' }));                  
+app.use(session({ secret: 'FollowTheHerd',
+  resave: false,
+  saveUninitialized: true 
+}));                  
 app.use(cookieParser());    
 app.use(methodOverride());             
 app.use(passport.initialize());                                 // initializes use of passport
 app.use(passport.session());                                    // persistent login sessions
-app.use(flash());                                               // use connect-flash for flash messages stored in session
-app.use(express.static(__dirname + '/public'));
+app.use(flash()); 
+app.use(express.static(path.join(__dirname, '../public')));
 
 require('./lib/auth.js')(passport);
 
