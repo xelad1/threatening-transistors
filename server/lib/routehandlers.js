@@ -6,16 +6,9 @@ var db = require('../config.js');
 var Goal = require('../models/goal.js');
 var emailHandler = require('./emailHandler.js');
 
-require('./auth.js')(passport);
 
-exports.signupHandler = function () {
-  passport.authenticate('local-signup', {
-    successRedirect : '/loginSuccess', // redirect to the secure profile section
-    failureRedirect : '/signupError', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
-})};
 
-exports.singupError = function () {
+exports.singupError = function (req, res) {
   res.status(404)
   res.send('Your signup details were either invalid or a duplicate of an existing user. Please try again')
 }
@@ -30,13 +23,6 @@ exports.loginError = function (req, res) {
   res.send('Your login details were incorrect. Please try again')
 }
 
-exports.loginHandler = function () {
-  passport.authenticate('local-login', { 
-   successRedirect: '/loginSuccess',
-   failureRedirect: '/loginError',
-   failureFlash : true // allow flash messages
-  });
-}
 
 exports.logout = function (req, res) {
   req.session.destroy(function (err) {

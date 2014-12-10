@@ -1,5 +1,5 @@
 var db = require('../config.js');
-var crypto = require('crypto');
+var bcrypt = require('bcrypt-nodejs');
 var mongoose = require('mongoose');
 var User = require('./user.js')
 

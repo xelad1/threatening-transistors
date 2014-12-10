@@ -23,6 +23,7 @@ var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 /********** App setup **************/
 var app = express();
 
+
 /**** App configuration *******/
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
@@ -33,7 +34,7 @@ app.use(session({ secret: 'FollowTheHerd',
   saveUninitialized: true 
 }));                  
 app.use(cookieParser());    
-app.use(methodOverride());             
+app.use(methodOverride());          
 app.use(passport.initialize());                                 // initializes use of passport
 app.use(passport.session());                                    // persistent login sessions
 app.use(flash()); 
@@ -43,12 +44,23 @@ require('./lib/auth.js')(passport);
 
 /********** Routes **************/
 
-app.post('/signup', handler.signupHandler);
+app.post('/signup',
+  passport.authenticate('local-signup', {
+        successRedirect : '/loginSuccess', // redirect to the secure profile section
+        failureRedirect : '/signupError', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    })
+);
 app.get('/signupError', handler.singupError);
 
 app.get('/loginSuccess', handler.loginSuccess);
 app.get('/loginError', handler.loginError);
-app.post('/login', handler.loginHandler);
+app.post('/login', passport.authenticate('local-login', { 
+   successRedirect: '/loginSuccess',
+   failureRedirect: '/loginError',
+   failureFlash : true // allow flash messages
+  })
+);
 
 
 app.get('/logout', handler.logout)
