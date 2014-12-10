@@ -31,9 +31,9 @@ exports.logout = function (req, res) {
 };
 
 exports.getGoals = function (req, response) {
-  Goal.find({userId:req.session.userId}).exec(function(err, result) {
+  console.log(req.session);
+  Goal.find({userId: req.session._id}).exec(function(err, result) {
       if (!err) {
-        console.log(result);
         response.send(result)
       } else {
         console.log('err');
@@ -42,7 +42,10 @@ exports.getGoals = function (req, response) {
 };
 
 exports.removeGoal = function (req, res) {
-  Goal.findOne({'userId': req.session.userId}, function(err, goals){
+  var name = req.session.name;
+  var email = req.session.email;
+
+  Goal.findOne({'userId': req.session._id}, function(err, goals){
     if(goals.length <= req.params.id){
       res.statusCode = 404;
       return res.send('Error 404: No goal found');
@@ -60,14 +63,15 @@ exports.removeGoal = function (req, res) {
 
 exports.addGoal = function (req, res) {
   var goalData = req.body;
-  var name = req.session.name || 'Marcus'
-  console.log('req session details',req.session.userID)
+  var name = req.session.name;
+  var email = req.session.email;
+  console.log(req.session)
   //check to see if user is already in goal database (has already saved at least one goal)
-  Goal.findOne({'userId': req.session.userId }, function(err, userGoalList){
+  Goal.findOne({'userId': req.session._id}, function(err, userGoalList){
     //if no goals in goal db create new goal for user
     if(!userGoalList){
       Goal.create({
-        userId: req.session.userId,
+        userId: req.session._id,
         goals: goalData
       }, function(err, goal){
         if(err){
@@ -86,6 +90,6 @@ exports.addGoal = function (req, res) {
     }
   });
 
-  emailHandler(goalData, name);
+  emailHandler(goalData, email);
 
 };

@@ -43,7 +43,6 @@ app.post('/signup',
   passport.authenticate('local-signup', {
         successRedirect : '/loginSuccess', // redirect to the secure profile section
         failureRedirect : '/signupError', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
     })
 );
 app.get('/signupError', handler.singupError);
@@ -53,7 +52,6 @@ app.get('/loginError', handler.loginError);
 app.post('/login', passport.authenticate('local-login', { 
    successRedirect: '/loginSuccess',
    failureRedirect: '/loginError',
-   failureFlash : true // allow flash messages
   })
 );
 

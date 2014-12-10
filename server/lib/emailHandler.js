@@ -5,7 +5,7 @@ var api_key = 'key-e81b3d37fc5adcc1bc5c21f5267a90d5';
 var domain = 'selfinspi.red';
 var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
-module.exports = function (goalData, username) {
+module.exports = function (goalData, username, email) {
   DifferNumDays = Math.floor(((new Date(goalData.endDate.valueOf()) - new Date(goalData.startDate.valueOf()))/(24*60*60*1000)));
 
   var whyIdx = Math.floor(Math.random()*goalData.why.length);
@@ -17,14 +17,13 @@ module.exports = function (goalData, username) {
     reason: goalData.why[whyIdx]
   }
 
-  console.log(emailDataInfo)
   // sends email on post request... this was put here for testing reasons. It should ideally grab from the database and send out according to time.
   var htmlPath = 'email/emailTemplate.html'; 
   var htmlContent = fs.readFileSync(htmlPath,'utf8');
   var response = nunjucks.renderString(htmlContent, emailDataInfo);
   var emailData = {
     from: 'Selfinspi.red <selfinspi.red@gmail.com>',
-    to: 'lizckc200@hotmail.com',
+    to: email,
     subject: "Don't Forget What's Important",
     html: response
   };
