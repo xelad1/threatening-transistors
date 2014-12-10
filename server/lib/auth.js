@@ -15,8 +15,7 @@ module.exports = function(passport) {
     });
 
     // used to deserialize the user
-    passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
+    passport.deserializeUser(function(id, done) {User.findById(id, function(err, user) {
             done(err, user);
         });
     });
@@ -61,6 +60,7 @@ module.exports = function(passport) {
                     }
                     req.session.name = newUser.name;
                     req.session.email = newUser.email;
+                    
                     return done(null, newUser);
                 });
             }
@@ -102,7 +102,6 @@ module.exports = function(passport) {
             // all is well, return successful user
             req.session.name = user.name;
             req.session.email = user.email
-            req.session._id = user._id
 
             return done(null, user);
         });
