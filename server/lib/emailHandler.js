@@ -18,7 +18,7 @@ module.exports = function (goalData, username, email) {
   }
 
   // sends email on post request... this was put here for testing reasons. It should ideally grab from the database and send out according to time.
-  var htmlPath = '../../email/emailTemplate.html'; 
+  var htmlPath = 'email/emailTemplate.html'; 
   var htmlContent = fs.readFileSync(htmlPath,'utf8');
   var response = nunjucks.renderString(htmlContent, emailDataInfo);
   var emailData = {
@@ -29,7 +29,7 @@ module.exports = function (goalData, username, email) {
   };
   var date = new Date(2014, 11, 04, 22, 54, 0); // will send an email at this time this data used for testing purposes
 
-
+  console.log('emailData', emailData)
   var j = schedule.scheduleJob(date, function(){
     mailgun.messages().send(emailData, function (error, body) {
    
