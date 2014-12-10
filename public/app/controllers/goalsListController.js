@@ -8,30 +8,30 @@ angular.module('app.goals', [])
 	//temporary testing array for populating goals list
 	$scope.data = {};
 	var goalsList = [
-		{
-		  _id: "7d7hebsd6f",
-          content: "Acheive inner peace",
-          endDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
-          startDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
-          why: ["I really want to be a yogi","Because I want to be thin"],
-          freq: "daily"
-        },
-        {
-          _id: "7gydksgg4",
-          content: "Help inner city children",
-          endDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
-          startDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
-          why: ["I want to protect kids from abuse","Because I never stood up when I was young"],
-          freq: "weekly"
-        },
-        {
-          _id: "5f5dtgbe",
-          content: "Lose 30lbs",
-          endDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
-          startDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
-          why: ["I want to be sexy again","So I can score with hot chicks"],
-          freq: "monthly"
-        },
+		// {
+		//   _id: "7d7hebsd6f",
+  //         content: "Acheive inner peace",
+  //         endDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
+  //         startDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
+  //         why: ["I really want to be a yogi","Because I want to be thin"],
+  //         freq: "daily"
+  //       },
+  //       {
+  //         _id: "7gydksgg4",
+  //         content: "Help inner city children",
+  //         endDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
+  //         startDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
+  //         why: ["I want to protect kids from abuse","Because I never stood up when I was young"],
+  //         freq: "weekly"
+  //       },
+  //       {
+  //         _id: "5f5dtgbe",
+  //         content: "Lose 30lbs",
+  //         endDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
+  //         startDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
+  //         why: ["I want to be sexy again","So I can score with hot chicks"],
+  //         freq: "monthly"
+  //       },
 	];
 
 	//stub function for testing / dev. will use HTTP service when fleshed out.
@@ -56,7 +56,7 @@ angular.module('app.goals', [])
 	$scope.successDelete = function(event){
 		var idToDelete = $(event.target).closest('.item').find('.goal-id').val();
 		goalsService.deleteGoal(idToDelete);
-
+		$scope.getGoals();
 		setTimeout(function(){
 			$('.success-dimmer').dimmer('hide');
 			
@@ -83,12 +83,16 @@ angular.module('app.goals', [])
 
 	$scope.confirmedDelete = function(){
 		var idToDelete = $scope.deletionPending.closest('.item').find('.goal-id').val();
-		goalsService.deleteGoal(idToDelete);
+		var goalsPromise = goalsService.deleteGoal(idToDelete);
 		$scope.closeConfirmDimmer();
-
 		//then refresh the view
 
-		$scope.getGoals();
+		//$scope.getGoals();
+
+		goalsPromise.then(function(){
+			$('.success-dimmer').dimmer('hide');
+			$scope.getGoals();
+		});
 	}
 
 	//Function to close dimmer flash. Used above and directly from the "no" button on
