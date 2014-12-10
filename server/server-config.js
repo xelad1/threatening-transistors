@@ -15,9 +15,8 @@ var nunjucks = require('nunjucks');
 
 /********** Helper Files **************/
 var db = require('./config.js');
-var util = require('./lib/utils.js');
-var handler = require('/.lib/handlers.js');
-
+var handler = require('/.lib/routehandlers.js');
+var emailHandler = require('.lib/emailHandler.js');
 /********** Email Config **************/
 var api_key = 'key-e81b3d37fc5adcc1bc5c21f5267a90d5';
 var domain = 'selfinspi.red';
@@ -39,40 +38,25 @@ app.use(passport.session());                                    // persistent lo
 app.use(flash());                                               // use connect-flash for flash messages stored in session
 app.use(express.static(__dirname + '/public'));
 
-require('./lib/auth.js')(passport);     
+require('./lib/auth.js')(passport);
+
 /********** Routes **************/
 
-app.get('/', handler.loginUserForm);
-app.post('/signup', handler.singupUserForm);
-app.get('/login', handler.loginUserForm);
-app.post('/login', handler.loginUser);
-app.get('/logout', handler.logoutUser);
-app.get('/goals', util.checkUser, handler.getGoals);
-app.post('/goals', util.checkUser, handler.addGoal);
-app.delete('/goals/:id', util.checkUser, handler.removeGoal)
+app.post('/signup', handler.signupHandler);
+app.get('/signupError', handler.singupError);
 
+app.get('/loginSuccess', handler.loginSuccess);
+app.get('/loginError', handler.loginError);
+app.post('/login', handler.loginHandler);
+
+
+app.get('/logout', handler.logout)
+
+
+app.get('/goals',  handler.getGoals);
+app.post('/goals',  handler.addGoal);
+app.delete('/goals/:id',  handler.removeGoal)
 
 
 /****** module.exports *********/
 module.exports = app
-
-
-/****** deleted **********/
-//chalk
-// pass passport for configuration
-
-
-// app.get('/loggedin', function(req,res) {
-//   res.send('Successful login');
-// })
-
-// app.get('/', util.checkUser, handler.renderIndex);
-// app.get('/links', util.checkUser, handler.fetchLinks);
-// app.post('/links', handler.saveLink);
-
-// app.get('/login', handler.loginUserForm);
-// app.post('/login', handler.loginUser);
-// app.get('/logout', handler.logoutUser);
-
-// app.get('/signup', handler.signupUserForm);
-// app.post('/signup', handler.signupUser);

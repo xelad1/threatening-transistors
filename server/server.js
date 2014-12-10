@@ -1,4 +1,4 @@
-/************ Node modules *****************/
+/************ Server *****************/
 var app = require('./server-config.js');
 
 var port = process.env.PORT || 3000;
