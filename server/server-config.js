@@ -60,7 +60,7 @@ app.get('/logout', handler.logout)
 
 
 app.get('/goals',  handler.getGoals);
-app.post('/goals',  handler.addGoal);
+app.post('/goals',  handler.addGoal, handler.getGoals);
 app.delete('/goals/:id',  handler.removeGoal)
 
 

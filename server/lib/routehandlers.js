@@ -26,7 +26,7 @@ exports.loginError = function (req, res) {
 
 exports.logout = function (req, res) {
   req.session.destroy(function (err) {
-    req.send("successful logout")
+    res.send("successful logout")
   })
 };
 
@@ -64,18 +64,19 @@ exports.addGoal = function (req, res) {
   var goalData = req.body;
   var name = req.session.name;
   var email = req.session.email;
-  console.log(req.session)
   //check to see if user is already in goal database (has already saved at least one goal)
   Goal.findOne({'userId': req.session.passport.user}, function(err, userGoalList){
+
     //if no goals in goal db create new goal for user
     if(!userGoalList){
+      console.log(goalData)
       Goal.create({
-        userId: req.session.passport.user
+        userId: req.session.passport.user,
         goals: goalData
       }, function(err, goal){
         if(err){
           res.send(err);
-        }
+        } console.log('goal saved', goal)
       });
       res.status(201).send("Users first goal added to database successfully");
     }else{
