@@ -26,6 +26,7 @@ exports.loginError = function (req, res) {
 
 exports.logout = function (req, res) {
   req.session.destroy(function (err) {
+    console.log('loggedout')
     res.send("successful logout")
   })
 };
@@ -72,11 +73,11 @@ exports.addGoal = function (req, res) {
       console.log(goalData)
       Goal.create({
         userId: req.session.passport.user,
-        goals: goalData
+        goals: [goalData]
       }, function(err, goal){
         if(err){
           res.send(err);
-        } console.log('goal saved', goal)
+        } 
       });
       res.status(201).send("Users first goal added to database successfully");
     }else{
