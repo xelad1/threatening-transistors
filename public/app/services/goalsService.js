@@ -29,13 +29,18 @@ angular.module('app.goalFact', [])
 		});
 	};
 
-	var deleteGoal = function(goalID){	
+	var deleteGoal = function(goalID, callback){	
 		console.log("deleting goal: " + goalID);
 		return $http({
 			method: 'DELETE',
 			url: '/goals' + '/' + goalID
 		}).then(function(res){
-			return res.data;
+			if(!callback) {
+				callback = function(data){
+					return data;
+				}
+			}
+			return callback(res.data);
 		});
 	};
 
