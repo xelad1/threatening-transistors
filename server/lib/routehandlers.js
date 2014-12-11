@@ -25,10 +25,11 @@ exports.loginError = function (req, res) {
 
 
 exports.logout = function (req, res) {
-  req.session.destroy(function (err) {
-    console.log('loggedout')
-    res.send("successful logout")
-  })
+  console.log(req.user);
+  req.logOut();
+  req.session.destroy();
+  console.log(req.user)
+  res.send('loggedOut');
 };
 
 exports.getGoals = function (req, response) {
