@@ -2,12 +2,22 @@ body {
 	padding-top: 2px;
 }
 
-main {
-	margin-top: 15px;
-}
 
 /* kind of hacky way to improve the web UI. may affect mobile, and need to be changed */
 
 textarea {
 	resize: none !important;
+}
+
+.ui.inverted.menu .item .item.logout {
+  color: white;
+}
+
+main.ui.page.grid#goalsPage {
+  margin-top: 3rem;
+}
+
+aside {
+  float: left;
+  display: inline-block;
 }
