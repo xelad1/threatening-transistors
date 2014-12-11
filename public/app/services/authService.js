@@ -25,7 +25,6 @@ angular.module('app.authFact', [])
 			url: '/logout',
 		}).then(function(res){
 			console.log('logged out');
-			$location.url("/login");
 		});
 	};
 
