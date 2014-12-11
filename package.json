@@ -2,14 +2,7 @@
   "name": "selfinspi.red",
   "version": "0.0.1",
   "description": "why, not just what",
-  "main": "server.js",
-  "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/renderf0x/2014-10-greenfield.git"
-  },
+  "main": "./server/server.js",
   "keywords": [
     "inspiration",
     "tracker",
@@ -20,10 +13,6 @@
   ],
   "author": "Nikhil B, Raymond M, Rachel S, Derek B",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/renderf0x/2014-10-greenfield/issues"
-  },
-  "homepage": "https://github.com/renderf0x/2014-10-greenfield",
   "dependencies": {
     "bcrypt-nodejs": "latest",
     "body-parser": "^1.10.0",

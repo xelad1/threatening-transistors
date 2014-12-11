@@ -18,7 +18,7 @@ module.exports = function (goalData, username, email) {
   }
 
   // sends email on post request... this was put here for testing reasons. It should ideally grab from the database and send out according to time.
-  var htmlPath = 'email/emailTemplate.html'; 
+  var htmlPath = '../email/emailTemplate.html'; 
   var htmlContent = fs.readFileSync(htmlPath,'utf8');
   var response = nunjucks.renderString(htmlContent, emailDataInfo);
   var emailData = {
