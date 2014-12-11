@@ -84,6 +84,7 @@ angular.module('app.add', [])
     $('.inspiration').transition('pulse');
   }
 
+
   //resets all form elements. used on send success.
 
   $scope.clearForm = function(){

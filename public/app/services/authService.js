@@ -19,6 +19,16 @@ angular.module('app.authFact', [])
 		});
 	}
 
+	var logout = function(){
+		return $http({
+			method: 'GET',
+			url: '/logout',
+		}).then(function(res){
+			console.log('logged out');
+			$location.url("/login");
+		});
+	};
+
 	
 	var signup = function(email, name, password){
 		console.log("authFactory signup getting email: " + email + ", name: " + name + ", password: " + password);
@@ -35,6 +45,7 @@ angular.module('app.authFact', [])
 	return {
 		login: login,
 		signup: signup,
-		loggedInUser: loggedInUser
+		loggedInUser: loggedInUser,
+		logout: logout
 	}
 });

@@ -56,7 +56,7 @@ app.post('/login', passport.authenticate('local-login', {
 );
 
 
-app.get('/logout', handler.logout)
+app.get('/logout', handler.logout);
 
 
 app.get('/goals',  handler.getGoals);

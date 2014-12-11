@@ -2,7 +2,7 @@
 *  Setup for app main and ui-router routes *
 *******************************************/
 
-angular.module('app', ['ui.router', 'app.signup', 'app.login', 'app.add', 'app.goals', 'app.authFact', 'app.goalFact'])
+angular.module('app', ['ui.router', 'app.signup', 'app.login', 'app.add', 'app.goals','app.logout', 'app.authFact',   'app.goalFact'])
 .config(function($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise("/login");
@@ -41,5 +41,6 @@ angular.module('app', ['ui.router', 'app.signup', 'app.login', 'app.add', 'app.g
         controller: 'signupController'
       }
     }
-  });
+  })
+  
 });
