@@ -1,5 +1,5 @@
 /************ Server *****************/
-var app = require('server-config.js');
+var app = require('./server/server-config.js');
 
 var port = process.env.PORT || 3000;
 
