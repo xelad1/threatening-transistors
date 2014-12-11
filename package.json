@@ -2,7 +2,7 @@
   "name": "selfinspi.red",
   "version": "0.0.1",
   "description": "why, not just what",
-  "main": "server/server.js",
+  "main": "./server/server.js",
   "keywords": [
     "inspiration",
     "tracker",
