@@ -129,13 +129,6 @@ angular.module('app.add', [])
     }
   }
 
-  $scope.popUpVenmo = function () {
-    // if yes, schedule payment
-  }
-  //Prepares data to be sent to the server. The server is
-  //expecting specific field names and we want to make sure to match those
-  //
-
   $scope.prepareData = function (data) {
     var prepared = {};
 
@@ -181,8 +174,10 @@ angular.module('app.add', [])
   $scope.code = null;
   $scope.url = null;
 
+/********************* Payments ********************/
 
-  $scope.getUserData = function () {
+  $scope.getUserData = function (callback) {
+    if ($location.absUrl() !== 'http://localhost:3000/#/profile') {
     var code = $location.absUrl().toString();
     $scope.code = {code: code.split('=')[1].split('#')[0]};
     return $http ({
@@ -192,10 +187,10 @@ angular.module('app.add', [])
       }).then(function(res){
       console.log(res);
       $scope.venmoUserData = res;
+      callback();
     });
+    }
   };
-
-  $scope.venmoFriends = null;
 
   $scope.getFriends = function () {
     return $http ({
@@ -207,41 +202,38 @@ angular.module('app.add', [])
     });
   }
 
-  setTimeout($scope.getUserData, 500);
-  setTimeout($scope.getFriends, 2000)
-   $scope.setupPayment = function (paydata) {
-    
-    // return $http ({
-    //   method: 'GET',
-    //   url: 'https://api.venmo.com/v1/me?access_token=' + $location.path()
-    // }).then(function(res){
-    //   $scope.venmoUserData = res.data;
-    //   console.log(res.data)
-    // });
+  if (!$scope.venmoFriends){
+   $scope.getUserData($scope.getFriends);
+   console.log($scope.venmoFriends);
   }
-    // sends payment to friend through venmo
-    // redirect to https://api.venmo.com/v1/oauth/authorize?client_id=CLIENT_ID&scope=make_payments%20access_profile
-  // });
 
+  $scope.runScript = function () {
 
-// // https://api.venmo.com/v1 restful API
+  }
+    
 
+  $scope.schedulePay = function () {
+     var payDetails = {amount:'0.01', receiverID: '1232668230418432302'}
+    
+    return $http ({
+      method: 'POST',
+      url: '/schedulePay',
+      data: payDetails
+    }).then(function(res){
+      console.log(res.data)
+    });
+  }
 
-//Secret: 4VUeNAwGEkbQWj8GywqYGBXygRBzWTrJ  
-//ID: 2195
-
-
-//https://api.venmo.com/v1/oauth/authorize?client_id=2195&scope=make_payments%20access_profile%20access_friends
-//From here, you can grab the access token from the url and start interacting with Venmo on the user's behalf.
-  //Invokes the Pickadate jQ plugin on the page.
-  //Called when the content is loaded so as to make sure to attach to the correct element
-  //('.datepicker' doesn't exist before load)
+  setTimeout($scope.schedulePay, 5000);
 
   $scope.$on('$viewContentLoaded', function(){
     
     var $input = $('.datepicker').pickadate();
     $scope.picker = $input.pickadate('picker');
 
+
   });
 
+
 });
+

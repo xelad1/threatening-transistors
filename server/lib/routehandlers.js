@@ -73,7 +73,6 @@ var headers = {
 };
 
 exports.payments = function (req, res) {
-  var userinfo = null;
   request.post(
     'https://api.venmo.com/v1/oauth/access_token',
     { form: {"client_id": 2195,
@@ -94,9 +93,32 @@ exports.payments = function (req, res) {
     })
 }
 
+exports.schedulePay = function (req, res) {
+  console.log(req.body)
+  var amount = req.body.amount;
+  var receiverId = req.body.receiverID;
+  var paymentReq = {"access_token": req.session.accessToken,
+    user_id: receiverId,
+    note: 'I did not meet my goal on time :(',
+    amount: amount
+    }
+    console.log(paymentReq);
+    request.post(
+    'https://api.venmo.com/v1/payments',
+    { form: paymentReq}, function (error, response, body) {
+      if(error) {
+        console.log(error);
+        res.status(404).send('no good');
+      }
+      else{
+        console.log(body);
+        res.send('Payment Completed');
+      }
+    })
+}
+
 exports.getFriends = function (req, res) {
   var requestURL = 'https://api.venmo.com/v1/users/' + req.session.venmoID + '/friends?access_token=' + req.session.accessToken + '&&limit=300';
-  console.log(requestURL)
   request.get(
     requestURL, function (error, response, body) {
       if(error) {
