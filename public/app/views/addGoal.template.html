@@ -24,6 +24,8 @@
 		<div ng-click="freqToggle('monthly')" ng-class="{'active': data.goal.freq.monthly}" class="ui button">Once a month</div>
 	</div>
 	<div class="ui hidden divider"></div>
+  <div ui-view="payment"></div>
+  <div class="ui hidden divider"></div>
 	<div ui-view="reasons"></div>
 </div>
 <div class="ui dimmer add-success">
