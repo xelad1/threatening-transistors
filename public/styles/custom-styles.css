@@ -9,6 +9,14 @@ textarea {
 	resize: none !important;
 }
 
+#paymentscope {
+  border: .5em solid #f5f5f5;
+  overflow: hidden;
+  box-shadow: 0 0 .2em  gray;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
 .ui.inverted.menu .item .item.logout {
   color: white;
 }
@@ -21,7 +29,59 @@ aside {
   float: left;
   display: inline-block;
 }
-
-a.venmoAuth {
+div#venmoAuth {
+  margin-top: 1em;
+}
+div.venmoAuth {
   color: white;
+  display: inline-block;
+  float: top;
+}
+
+.ui.icon.button.venmoAuth {
+  vertical-align: top;
+  height:2.5em;
+  margin: auto;
+  font-size: 1.2em;
+}
+
+div#friendsList{
+  display: inline-block;
+  width: 55%;
+  float: left;
+}
+div#friendsList.ui.form >label {
+  text-align: left;
+  font-size: 12em;
+}
+
+#conditions {
+  font-size: 1.2em;
+  padding: 1em;
+}
+.ui.label.friends, .ui.label.amount {
+  width: 125%;
+}
+
+
+.ui.form .field.friends, .ui.form .field.amount{
+  margin-left: 3em;
+
+}
+
+.ui.form .fields:last-child .field, .ui.form :not(.fields) .field:last-child {
+  margin-bottom: 1em;
+}
+
+#venmologo {
+    width: 10%;
+    height: 0;
+    padding-bottom: 5em;
+    overflow: hidden;
+}
+
+#venmologo img {
+    display: block;
+    width: 40%;
+    height: auto;
 }
