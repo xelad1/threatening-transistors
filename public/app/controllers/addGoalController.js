@@ -3,7 +3,7 @@
 *******************************************/
 
 angular.module('app.add', [])
-.controller('addGoalController', function(goalsService, authFactory, $scope, $rootScope){
+.controller('addGoalController', function(goalsService, authFactory, $http, $scope, $rootScope, $location){
 	
   /* VARIABLE DEFINITIONS */
 
@@ -129,6 +129,9 @@ angular.module('app.add', [])
     }
   }
 
+  $scope.popUpVenmo = function () {
+    // if yes, schedule payment
+  }
   //Prepares data to be sent to the server. The server is
   //expecting specific field names and we want to make sure to match those
   //
@@ -174,15 +177,48 @@ angular.module('app.add', [])
     }
   };
 
-   $scope.setupPayment = function (paydata) {
-    
+  $scope.venmoUserData = null;
+  $scope.code = null;
+  $scope.url = null;
+
+
+  $scope.getUserData = function () {
+    var code = $location.absUrl().toString();
+    $scope.code = {code: code.split('=')[1].split('#')[0]};
     return $http ({
       method: 'POST',
-      url: '/schedulePay',
-      data: paydata
-    }).then(function(res){
-      return res.data;
+      url: '/payments',
+      data: $scope.code
+      }).then(function(res){
+      console.log(res);
+      $scope.venmoUserData = res;
     });
+  };
+
+  $scope.venmoFriends = null;
+
+  $scope.getFriends = function () {
+    return $http ({
+      method: 'GET',
+      url: '/getFriends',
+      }).then(function(res){
+      console.log(res);
+      $scope.venmoFriends = res.data;
+>>>>>>> began integrating venmo
+    });
+  }
+
+  setTimeout($scope.getUserData, 1000);
+  setTimeout($scope.getFriends, 3000)
+   $scope.setupPayment = function (paydata) {
+    
+    // return $http ({
+    //   method: 'GET',
+    //   url: 'https://api.venmo.com/v1/me?access_token=' + $location.path()
+    // }).then(function(res){
+    //   $scope.venmoUserData = res.data;
+    //   console.log(res.data)
+    // });
   }
     // sends payment to friend through venmo
     // redirect to https://api.venmo.com/v1/oauth/authorize?client_id=CLIENT_ID&scope=make_payments%20access_profile

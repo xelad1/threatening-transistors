@@ -31,6 +31,7 @@ angular.module('app.goalFact', [])
 
 	var deleteGoal = function(goalID, callback){	
 		console.log("deleting goal: " + goalID);
+		// delete payment schedule
 		return $http({
 			method: 'DELETE',
 			url: '/goals' + '/' + goalID

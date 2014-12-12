@@ -9,7 +9,6 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var methodOverride = require('method-override');
 var mongoose = require('mongoose');
-var nunjucks = require('nunjucks');
 
 /********** Helper Files **************/
 var db = require('./config.js');
@@ -23,7 +22,11 @@ var app = express();
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
-app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
+app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use(session({
   name: 'thisCookie',
   secret: 'FollowTheHerd',
@@ -38,6 +41,8 @@ app.use(flash());
 app.use(express.static(path.join(__dirname, '../public')));
 
 require('./lib/auth.js')(passport);
+
+
 
 /********** Routes **************/
 
@@ -57,7 +62,8 @@ app.post('/login', passport.authenticate('local-login', {
   })
 );
 
-
+app.post('/payments', handler.payments);
+app.get('/getFriends', handler.getFriends)
 app.get('/logout', handler.logout);
 
 

@@ -24,16 +24,15 @@ module.exports = function (goalData, username, email) {
   var response = nunjucks.renderString(htmlContent, emailDataInfo);
   var emailData = {
     from: 'Selfinspi.red <selfinspi.red@gmail.com>',
-    to: email,
+    to: 'nballaney@gmail.com',
     subject: "Don't Forget What's Important",
     html: response
   };
-  var date = new Date(2014, 11, 04, 22, 54, 0); // will send an email at this time this data used for testing purposes
+  var date = new Date(2014, 12, 11, 20, 54, 0); // will send an email at this time this data used for testing purposes
 
 
   var j = schedule.scheduleJob(date, function(){
     mailgun.messages().send(emailData, function (error, body) {
-   
   });
   });
 
