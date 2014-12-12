@@ -1,4 +1,5 @@
 [![Stories in Ready](https://badge.waffle.io/DESERT-LEOPARD/threatening-transistors.png?label=ready&title=Ready)](https://waffle.io/DESERT-LEOPARD/threatening-transistors)
+[![Build Status](https://travis-ci.org/DESERT-LEOPARD/threatening-transistors.svg?branch=master)](https://travis-ci.org/DESERT-LEOPARD/threatening-transistors)
 
 # Project Name Inspiherd
 
