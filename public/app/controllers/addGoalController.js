@@ -204,12 +204,11 @@ angular.module('app.add', [])
       }).then(function(res){
       console.log(res);
       $scope.venmoFriends = res.data;
->>>>>>> began integrating venmo
     });
   }
 
-  setTimeout($scope.getUserData, 1000);
-  setTimeout($scope.getFriends, 3000)
+  setTimeout($scope.getUserData, 500);
+  setTimeout($scope.getFriends, 2000)
    $scope.setupPayment = function (paydata) {
     
     // return $http ({

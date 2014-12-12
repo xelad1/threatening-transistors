@@ -1,5 +1,6 @@
 <div>
     <script src='https://platform.venmo.com/sdk.js'></script>
+
 <div class="ui right labeled teal icon button">
  <a class='venmoAuth' href="https://api.venmo.com/v1/oauth/authorize?client_id=2195&scope=make_payments%20access_profile%20access_friends&response_type=code"> Allow Venmo to incentivise me to stick to my goals </a> 
     </div>
@@ -7,18 +8,18 @@
 <a class="venmo-pay-button" data-recipient-id="1397129314566144218" data-amount='5.00'/>
 <div class="ui form">
   <div class="field">
-  <p> {{venmoFriends[0].display_name}} </p>
     <label>Friends</label>
-    <select class="ui search dropdown">
-      <option ng-repeat=' friend in venmoFriends'>{{friend.display_name}}</option>
+    <select class="ui search dropdown" >
+      <option> </option>
+      <option  ng-repeat='friend in venmoFriends' value='{{friend.display_name}}' >{{friend.display_name}}</option>
     </select>
+    <script>
+    setTimeout( function () { 
+        $('.ui.dropdown').dropdown()
+      },6000)
+    </script>
   </div>
 </div>
-<script>
-$('.ui.dropdown')
-  .dropdown()
-;
-</script>
 </div>
 
 

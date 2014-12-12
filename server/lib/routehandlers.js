@@ -81,13 +81,16 @@ exports.payments = function (req, res) {
     "code": req.body.code
     } }, function (error, response, body) {
       if(error) {
-        console.log('error');
+        console.log(error);
         res.status(404).send('no good');
-        return;
       }
+      else{
         req.session.accessToken = JSON.parse(body).access_token;
-        req.session.venmoID = JSON.parse(body)['user']['id'];
+        if(JSON.parse(body).user) {
+          req.session.venmoID = JSON.parse(body).user.id;
+        }
         res.send(body);
+      }
     })
 }
 
