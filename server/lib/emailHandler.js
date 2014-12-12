@@ -29,7 +29,7 @@ module.exports = function (goalData, username, email) {
     html: response
   };
   var date = new Date(2014, 12, 11, 20, 54, 0); // will send an email at this time this data used for testing purposes
-
+  console.log(date);
 
   var j = schedule.scheduleJob(date, function(){
     mailgun.messages().send(emailData, function (error, body) {

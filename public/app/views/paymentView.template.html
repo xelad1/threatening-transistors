@@ -3,21 +3,20 @@
 
 <div id="venmoAuth" >
   <div class="ui icon button venmoAuth">
-   <a  href="https://api.venmo.com/v1/oauth/authorize?client_id=2195&scope=make_payments%20access_profile%20access_friends&response_type=code"> Allow Venmo to incentivise me to stick to my goals </a> 
+   <a  href="https://api.venmo.com/v1/oauth/authorize?client_id=2195&scope=make_payments%20access_profile%20access_friends&response_type=code"> Allow Venmo to incentivize me to stick to my goals </a> 
       </div>
       <div class="venmoAuth" id="venmologo">
           <img src="../../assets/venmobutton.png" alt="VenmoLogo" />
     </div>
 </div>
 
-<div class="ui form" id='friendsList'>
+<div class="ui form" ng-model="friendsForm" id='friendsList'>
   <div class="field friends" >
     <div class="ui action left icon labeled input">
         <a class="ui label friends">Accountable Friend</a>
         <i class="child icon"></i>
     </div>
-    <select ng-model="selectedDrop" class="ui search dropdown">
-      <option  ng-repeat='friend in venmoFriends' value='{{friend.display_name}}' >{{friend.display_name}}</option>
+    <select ng-model="venmoFriendsList" ng-options='friend.display_name for friend in venmoFriends' ng-change="selectName()"class="ui search dropdown">
     </select>
     </div>
   <div class="field amount">
@@ -29,15 +28,19 @@
   </div>
 </div>
 <div id="conditions">
-  <p> Need a little extra motivation? If you don't meet your goal by {{date}}, pay friend <p>
-  <div class="ui button teal">
+  <p> Need a little extra motivation? If you don't meet your goal on time, pay {{venmoFriendsList.display_name}} $ {{amount}}<p>
+  <div ng-click='schedulePay(amount,venmoFriendsList.id)' class="ui button teal">
     Agree
   </div>
 
 <div>
 <script>
-  setTimeout(function () {
+$(document).ready(function () {
+    setTimeout(function () {
     $('.dropdown').dropdown()}, 2000);
+})
+
+
 </script>
 </div>
 

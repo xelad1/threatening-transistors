@@ -210,10 +210,13 @@ angular.module('app.add', [])
   $scope.runScript = function () {
 
   }
-    
 
-  $scope.schedulePay = function () {
-     var payDetails = {amount:'0.01', receiverID: '1232668230418432302'}
+  $scope.schedulePay = function (amount, id) {
+
+    // var date = moment($scope.picker.get('select').obj).format('L').split('/').join(' ')
+    var date = $scope.picker.get('select').obj
+
+    var payDetails = {amount:amount, receiverID: id, date: date}
     
     return $http ({
       method: 'POST',
@@ -223,8 +226,6 @@ angular.module('app.add', [])
       console.log(res.data)
     });
   }
-
-  setTimeout($scope.schedulePay, 5000);
 
   $scope.$on('$viewContentLoaded', function(){
     

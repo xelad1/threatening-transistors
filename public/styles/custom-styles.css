@@ -56,8 +56,9 @@ div#friendsList.ui.form >label {
 }
 
 #conditions {
-  font-size: 1.2em;
-  padding: 1em;
+  font-size: 1.5em;
+  display: inline-block;
+  width: 35%;
 }
 .ui.label.friends, .ui.label.amount {
   width: 125%;
