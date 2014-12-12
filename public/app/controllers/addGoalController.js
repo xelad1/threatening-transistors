@@ -178,7 +178,7 @@ angular.module('app.add', [])
     
     return $http ({
       method: 'POST',
-      url: '/schedulePay'
+      url: '/schedulePay',
       data: paydata
     }).then(function(res){
       return res.data;

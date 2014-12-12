@@ -45,5 +45,14 @@ angular.module('app', ['ui.router', 'app.signup', 'app.login', 'app.add', 'app.g
       }
     }
   })
+  .state('mapViewState', {
+    url:'/mapview',
+    views: {
+      'authPane': {
+        templateUrl: 'app/views/geolocationTester.html',
+        controller: 'mapViewController'
+      }
+    }
+  })
   
 });
