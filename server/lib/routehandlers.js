@@ -18,7 +18,7 @@ exports.loginSuccess = function (req, res) {
   res.send('Login was successful')
 }
 
-exports.loginError = function (req, res) {
+exports.loginError = function (req, res) {  
   res.status(404)
   res.send('404- Your login details were incorrect. Please try again')
 }
