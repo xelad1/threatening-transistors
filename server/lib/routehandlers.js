@@ -87,11 +87,12 @@ exports.addGoal = function (req, res) {
         if(err){
           res.send(err);
         }
-      res.status(201).send("Goal Added to existing goals successfully");
+        emailHandler(goalData, email);
+        res.send("Goal Added to existing goals successfully");
       });
     }
   });
 
-  emailHandler(goalData, email);
+  
 
 };

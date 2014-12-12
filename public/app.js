@@ -2,7 +2,7 @@
 *  Setup for app main and ui-router routes *
 *******************************************/
 
-angular.module('app', ['ui.router', 'app.signup', 'app.login', 'app.add', 'app.goals','app.logout', 'app.payment', 'app.authFact',   'app.goalFact'])
+angular.module('app', ['ui.router', 'app.signup', 'app.login', 'app.add', 'app.goals','app.logout',  'app.authFact',   'app.goalFact'])
 .config(function($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise("/login");
@@ -18,13 +18,12 @@ angular.module('app', ['ui.router', 'app.signup', 'app.login', 'app.add', 'app.g
       "reasons@addGoalState": {
         templateUrl: "/app/views/reasonsView.template.html"
       },
+      "payment@addGoalState": {
+        templateUrl: "app/views/paymentView.template.html"
+      },
       "goalsList": {
         templateUrl: "/app/views/goalsView.template.html",
         controller: "goalsListController"
-      },
-      "payment": {
-        templateUrl: "app/views/paymentView.template.html",
-        controller: "paymentController"
       }
     }
   })

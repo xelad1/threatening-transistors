@@ -5,7 +5,7 @@
 angular.module('app.authFact', [])
 .factory('authFactory', function($q, $http, $location){
 
-	var loggedInUser = null;
+	var loggedInUser = [false];
 
 	var login = function(email, password){
 		console.log("authFactory getting email: " + email + ", password: " + password);
@@ -16,6 +16,7 @@ angular.module('app.authFact', [])
 		}).then(function(res){
 			console.log(res.data);
 			$location.url("/profile");
+			loggedInUser[0] = true;
 		});
 	}
 
@@ -24,6 +25,7 @@ angular.module('app.authFact', [])
 			method: 'GET',
 			url: '/logout',
 		}).then(function(res){
+			loggedInUser[0] = false;
 			console.log('logged out');
 		});
 	};
@@ -37,9 +39,11 @@ angular.module('app.authFact', [])
 			data: {email: email, name: name, password: password}
 		}).then(function(res){
 			console.log(res.data);
+			 loggedInUser[0] = true;
 			$location.url("/profile");
 		});
 	}
+
 
 	return {
 		login: login,

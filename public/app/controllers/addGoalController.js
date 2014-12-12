@@ -3,7 +3,7 @@
 *******************************************/
 
 angular.module('app.add', [])
-.controller('addGoalController', function(goalsService, $scope, $rootScope){
+.controller('addGoalController', function(goalsService, authFactory, $scope, $rootScope){
 	
   /* VARIABLE DEFINITIONS */
 
@@ -111,19 +111,22 @@ angular.module('app.add', [])
   //Scope function to attach to the goalsService creation function
 
   $scope.createGoal = function(){
+    if (authFactory.loggedInUser) {
+      if ($('.inspiration').val() !== ""){
+        $scope.data.goal.why.push($('.inspiration'));
+      }
 
-    if ($('.inspiration').val() !== ""){
-      $scope.data.goal.why.push($('.inspiration'));
+      var input = $scope.prepareData($scope.data.goal);
+
+      goalsService.createGoal(input).then(function(res){
+        console.log("Server says" + res);
+        $scope.showCreateSuccess();
+        $scope.clearForm();
+        $rootScope.$broadcast('updated', {});
+      });
+    } else {
+      alert('you must be logged in to create a goal')
     }
-
-    var input = $scope.prepareData($scope.data.goal);
-
-    goalsService.createGoal(input).then(function(res){
-      console.log("Server says" + res);
-      $scope.showCreateSuccess();
-      $scope.clearForm();
-      $rootScope.$broadcast('updated', {});
-    });
   }
 
   //Prepares data to be sent to the server. The server is
@@ -171,6 +174,30 @@ angular.module('app.add', [])
     }
   };
 
+   $scope.setupPayment = function (paydata) {
+    
+    return $http ({
+      method: 'POST',
+      url: '/schedulePay'
+      data: paydata
+    }).then(function(res){
+      return res.data;
+    });
+  }
+    // sends payment to friend through venmo
+    // redirect to https://api.venmo.com/v1/oauth/authorize?client_id=CLIENT_ID&scope=make_payments%20access_profile
+  // });
+
+
+// // https://api.venmo.com/v1 restful API
+
+
+//Secret: 4VUeNAwGEkbQWj8GywqYGBXygRBzWTrJ  
+//ID: 2195
+
+
+//https://api.venmo.com/v1/oauth/authorize?client_id=2195&scope=make_payments%20access_profile%20access_friends
+//From here, you can grab the access token from the url and start interacting with Venmo on the user's behalf.
   //Invokes the Pickadate jQ plugin on the page.
   //Called when the content is loaded so as to make sure to attach to the correct element
   //('.datepicker' doesn't exist before load)

@@ -3,45 +3,22 @@
 *******************************************/
 
 angular.module('app.goals', [])
-.controller('goalsListController', function($scope, goalsService){
+.controller('goalsListController', function($scope, goalsService, authFactory){
 
 	//temporary testing array for populating goals list
 	$scope.data = {};
-	var goalsList = [
-		// {
-		//   _id: "7d7hebsd6f",
-  //         content: "Acheive inner peace",
-  //         endDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
-  //         startDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
-  //         why: ["I really want to be a yogi","Because I want to be thin"],
-  //         freq: "daily"
-  //       },
-  //       {
-  //         _id: "7gydksgg4",
-  //         content: "Help inner city children",
-  //         endDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
-  //         startDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
-  //         why: ["I want to protect kids from abuse","Because I never stood up when I was young"],
-  //         freq: "weekly"
-  //       },
-  //       {
-  //         _id: "5f5dtgbe",
-  //         content: "Lose 30lbs",
-  //         endDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
-  //         startDate: Date.parse("Sun Dec 07 2014 16:20:42 GMT-0800 (PST)"),
-  //         why: ["I want to be sexy again","So I can score with hot chicks"],
-  //         freq: "monthly"
-  //       },
-	];
+	var goalsList = []
 
 	//stub function for testing / dev. will use HTTP service when fleshed out.
 
 	$scope.getGoals = function(){
-		$scope.data.goalsList = goalsList;
-		goalsService.getGoals().then(function(data){
-			$scope.data.goalsList = data[0]['goals'];
-			console.log(JSON.stringify(data[0]['goals']));
-		});
+    if (authFactory.loggedInUser){
+  		$scope.data.goalsList = goalsList;
+  		goalsService.getGoals().then(function(data){
+  			$scope.data.goalsList = data[0]['goals'];
+  			console.log(JSON.stringify(data[0]['goals']));
+  		});
+    }
 	}
 
 	//Shows success dimmer flash and then deletes goal when the user clicks "I did it"
