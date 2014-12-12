@@ -199,6 +199,10 @@ angular.module('app.add', [])
       }).then(function(res){
       console.log(res);
       $scope.venmoFriends = res.data;
+      url: '/schedulePay',
+      data: paydata
+    }).then(function(res){
+      return res.data;
     });
   }
 
