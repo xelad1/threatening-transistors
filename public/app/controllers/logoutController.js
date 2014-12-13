@@ -3,5 +3,4 @@ angular.module('app.logout', [])
   $scope.logout = function () {
     authFactory.logout();
   }
-
 });

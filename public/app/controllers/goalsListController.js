@@ -71,7 +71,7 @@ angular.module('app.goals', [])
 			$scope.getGoals();
 		});
 	}
-
+	
 	//Function to close dimmer flash. Used above and directly from the "no" button on
 	//deletion confirm.
 

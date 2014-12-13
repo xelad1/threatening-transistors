@@ -22,6 +22,7 @@
 		            	<!-- primary dashboard views, from ui-router -->
 		            	<div ui-view="authPane"></div>
 						<div ui-view="addGoal"></div>
+						<div ui-view="geoLocation"></div>
 						<div class="ui hidden divider"></div>
 						<div ui-view="goalsList"></div>
 		            </div>
@@ -41,7 +42,7 @@
 
 
 		<!-- our app -->
-		<script src="app.js"></script>
+		
 		<!-- services -->
 		<script src="app/services/goalsService.js"></script>
 		<script src="app/services/authService.js"></script>
@@ -51,6 +52,8 @@
 		<script src="app/controllers/goalsListController.js"></script>
 		<script src="app/controllers/loginController.js"></script>
 		<script src="app/controllers/signupController.js"></script>
-
+		<script src="app/controllers/geolocationController.js"></script>
+		<script src="https://rawgithub.com/arunisrael/angularjs-geolocation/master/dist/angularjs-geolocation.min.js"></script>
+		<script src="app.js"></script>
 	</body>
 </html>
