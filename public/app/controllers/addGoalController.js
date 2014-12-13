@@ -197,13 +197,9 @@ angular.module('app.add', [])
       method: 'GET',
       url: '/getFriends',
       }).then(function(res){
-      console.log(res);
-      $scope.venmoFriends = res.data;
-      url: '/schedulePay',
-      data: paydata
-    }).then(function(res){
-      return res.data;
-    });
+        console.log(res);
+        $scope.venmoFriends = res.data;
+      });
   }
 
   if (!$scope.venmoFriends){
@@ -218,7 +214,7 @@ angular.module('app.add', [])
   $scope.schedulePay = function (amount, id) {
 
     // var date = moment($scope.picker.get('select').obj).format('L').split('/').join(' ')
-    var date = $scope.picker.get('select').obj
+    var date = $scope.picker.get('select').obj;
 
     var payDetails = {amount:amount, receiverID: id, date: date}
     

@@ -27,7 +27,7 @@
     "angular-ui-router": "~0.2.13",
     "semantic-ui": "~1.1.2",
     "pickadate": "~3.5.4",
-    "moment": "~2.8.4"
+    "moment": "~2.8.4",
     "angularjs-geolocation": "git://github.com/arunisrael/angularjs-geolocation.git#~0.1.1"
   }
 }
